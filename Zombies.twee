@@ -13,4 +13,12 @@ Zombies
 
 
 :: Untitled Passage {"position":"650,300","size":"100,100"}
-hello
+Hello there let's go [[there->Untitled Passage 1]] or [[here->Untitled Passage 2]]
+
+
+:: Untitled Passage 1 {"position":"925,200","size":"100,100"}
+
+
+
+:: Untitled Passage 2 {"position":"800,525","size":"100,100"}
+
