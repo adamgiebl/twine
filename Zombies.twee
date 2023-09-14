@@ -1,0 +1,16 @@
+:: StoryTitle
+Zombies
+
+
+:: StoryData
+{
+  "ifid": "527BA03A-D457-41C5-9E7C-E6A410B3372A",
+  "format": "Harlowe",
+  "format-version": "3.3.7",
+  "start": "Untitled Passage",
+  "zoom": 0.6
+}
+
+
+:: Untitled Passage {"position":"650,300","size":"100,100"}
+hello
