@@ -15,11 +15,8 @@ Zombies at ITU
 (set: $energy to 80)
 
 :: header [header]
-<div class="energy-bar" data-total="100" data-value="80"> 
-  <div class="bar">
-    <div class="hit"></div>
-  </div>
-</div>
+Energy:
+(print: '<meter value="' + (text: $energy) + '" min="0" max="100"></meter>')
 Inventory:
 (set: $inventory to (a:))
 (if: $inventory's length is 0)[\
@@ -29,101 +26,34 @@ Inventory:
     _item (unless: $inventory's last is _item)[, ]
   \].
 ]
+<hr>
 
 :: The Beginning {"position":"650,300","size":"100,100"}
+<h3>The Beginning</h3>
 The screen fades from black to the dimly lit university game room. We see rows of high-end PCs, with the hum of the computers and the occasional flickering fluorescent light. The room is littered with empty snack packets, energy drink cans, and board games. There's a vibe of a night well spent. The clock on the wall shows 4:37 AM.
 
 [[Get Up.|GameLab]]
 
 :: GameLab {"position":"650,300","size":"100,100"}
+<h3>GameLab</h3>
+You stir from a makeshift bed on the couch, groggy. You have been attending a LAN party that started Friday evening. You remember laughing, playing, and eventually, fatigue causing you to drift off to sleep amidst the glow of monitors.
+As you stand up, you notice the eeriness: the main game screen still displays a paused game, but the in-game sounds are replaced with an unsettling silence. The only other sound is a distant, ominous alarm – probably the university's emergency system.
 
+[[Step out of GameLab.|Second Building - 2nd Floor]]
 
-:: Canteen {"position":"925,200","size":"100,100"}
+:: Second Building - 2nd Floor {"position":"750,300","size":"100,100"}
+<h3>Second Building - 2nd Floor</h3>
+As you step out of GameLab..
+What do you do?
+- [[I wonder if my friends are okay..|Main Building - Ground Floor]]
+- [[I should probably look for food.|Netto]]
+- [[Fuck this shit I'm out.|Streets of DR Byen]]
 
-:: Analog {"position":"800,525","size":"100,100"}
+:: Streets of DR Byen {"position":"800,225","size":"100,100"}
+
+:: Main Building - Ground Floor {"position":"800,525","size":"100,100"}
+
+:: Netto {"position":"800,825","size":"100,100"}
 
 :: StoryScript [script]
 // Reference the elements of the health bar
-$(document).ready(function())
-{
-  var hitBtn = hBar = $('.health-bar'),
-      bar = hBar.find('.bar'),
-      hit = hBar.find('.hit');
-}
-
-:: StoryScript [script]
-// Reference the elements of the health bar
-$(document).ready(function())
-{
-  var hitBtn = hBar = $('.health-bar'),
-      bar = hBar.find('.bar'),
-      hit = hBar.find('.hit');
-}
-
-// Define macro to test the health bar:
-Macro.add( "decrease_HP",
- {
-    handler : function(){
-// grab HTML defined data values
-var total = hBar.data('total'),
-        value = hBar.data('value');
-    
-    if (value < 0) {
-	// we are dead transition to game end
-      return;
-    }
-    // max damage is essentially quarter of max life
-    damage = 100;
-    var newValue = value - damage;
-    // calculate the percentage of the total width
-    var barWidth = (newValue / total) * 100;
-    var hitWidth = (damage / value) * 100 + "%";
-    
-    // show hit bar and set the width
-    hit.css('width', hitWidth);
-    hBar.data('value', newValue);
-    
-    setTimeout(function(){
-      hit.css({'width': '0'});
-      bar.css('width', barWidth + "%");
-    }, 500);
-    
-    if( value < 0){
-      // dead, dead and dead, go to Game End
-    }
-}
-  });
-
-:: StoryStylesheet [stylesheet]
-energy-bar {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 200px;
-    height: 20px;
-    padding: 5px;
-    background: #ddd;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    position: relative;
-  }
-  .bar {
-    background: rgb(46, 204, 125);
-    width: 100%;
-    height: 10px;
-    position: relative;
-    
-    transition: width .5s linear;
-  }
-  
-  .hit {
-    background: rgba(255,255,255,0.6);
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 0px;
-    
-    transition: width .5s linear;
-  }
