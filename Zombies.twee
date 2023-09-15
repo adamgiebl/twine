@@ -13,12 +13,12 @@ Zombies at ITU
 
 :: init [startup]
 (set: $energy to 80)
+(set: $inventory to (a:))
 
 :: header [header]
 Energy:
 (print: '<meter value="' + (text: $energy) + '" min="0" max="100"></meter>')
 Inventory:
-(set: $inventory to (a:))
 (if: $inventory's length is 0)[\
   nothing.
 ](else:)[\
@@ -52,8 +52,16 @@ What do you do?
 :: Streets of DR Byen {"position":"800,225","size":"100,100"}
 
 :: Main Building - Ground Floor {"position":"800,525","size":"100,100"}
-
+(set: $energy to it - 10)
 :: Netto {"position":"800,825","size":"100,100"}
+(set: $energy to it - 20)
+<h3>Netto</h3>
+As you arrive to Netto...glass windows are broken...
+No one seems to be here, should you step in?
+
+- [[Maybe I should look around.|Netto 2]]
+- [[Probably shouldn't..|Streets of DR Byen]]
+
 
 :: StoryScript [script]
 // Reference the elements of the health bar
