@@ -1,7 +1,6 @@
 :: StoryTitle
 Zombies at ITU
 
-
 :: StoryData
 {
   "ifid": "527BA03A-D457-41C5-9E7C-E6A410B3372A",
@@ -11,78 +10,220 @@ Zombies at ITU
   "zoom": 0.6
 }
 
-:: init [startup]
+:: StoryStylesheet [stylesheet]
+body {
+  margin: auto;
+  max-width: 800px;
+  background: black;
+}
+
+tw-story {
+  background: #202020;
+  padding: 30px;
+  position: relative;
+}
+
+:: init [startup] {"position":"25,25","size":"100,100"}
 (set: $energy to 80)
 (set: $inventory to (a:))
 
-:: header [header]
-Energy:
-(print: '<meter value="' + (text: $energy) + '" min="0" max="100"></meter>')
-Inventory:
-(if: $inventory's length is 0)[\
-  nothing.
-](else:)[\
-  (for: each _item, ...$inventory)[\
-    _item (unless: $inventory's last is _item)[, ]
-  \].
-]
-<hr>
+:: header [header] {"position":"150,25","size":"100,100"}
+{
+<header>
+  <div>
+    Inventory:
+    (if: $inventory's length is 0)[\
+      nothing.
+    ](else:)[
+      (for: each _item, ...$inventory)[
+        _item (unless: $inventory's last is _item)[, ]
+      ]
+    ]
+  </div>
+  <div class="energy-wrapper">
+    <div class="energy">
+      (for: each _i, ...(range: 1, $energy / 10))[
+        <div class="bar"></div>
+      ]
+    </div>
+  </div>
+</header>
+<style>
+  header {
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.energy-wrapper {
+  padding: 10px;
+  background: rgb(48, 48, 48);
+  height: 50px;
+}
 
-:: The Beginning {"position":"650,300","size":"100,100"}
+.energy tw-hook {
+  --width: 140px;
+  width: var(--width);
+  height: 100%;
+  display: flex;
+}
+
+.energy {
+  height: 100%;
+}
+
+.bar {
+  width: calc(var(--width) / 10);
+  height: 100%;
+  background: rgb(240, 227, 55);
+  border-right: 3px solid rgb(48, 48, 48);
+}
+</style>
+}
+
+:: The Beginning {"position":"200,400","size":"100,100"}
 <h3>The Beginning</h3>
-<p>
-The screen fades from black to the dimly lit university 
-game room. We see rows of high-end PCs, with the hum of the 
+<p>The screen fades from black to the dimly lit university 
+game room. Rows of high-end PCs, with the hum of the 
 computers and the occasional flickering fluorescent light. 
 The room is littered with empty snack packets, energy drink 
-cans, and board games. There's a vibe of a night well spent. 
-The clock on the wall shows 4:37 AM.
-</p>
+cans, and board games. There's a vibe of a night well spent.</p>
 
 [[Get Up.|GameLab]]
 
-:: GameLab {"position":"650,300","size":"100,100"}
+:: GameLab {"position":"325,400","size":"100,100"}
 <h3>GameLab</h3>
-<p>
-You stir from a makeshift bed on the couch, groggy. You 
+<p>You stir from a makeshift bed on the couch, groggy. You 
 have been attending a LAN party that started Friday evening. 
 You remember laughing, playing, and eventually, fatigue causing 
-you to drift off to sleep amidst the glow of monitors.
-</p>
-
+you to drift off to sleep amidst the glow of monitors.</p>
 <p>As you stand up, you notice the eeriness: the main game 
 screen still displays a paused game, but the in-game sounds 
 are replaced with an unsettling silence. The only other sound 
 is a distant, ominous alarm – probably the university's 
-emergency system.
-</p>
+emergency system.</p>
 
-[[Step out of GameLab.|Second Building - 2nd Floor]]
+- [[Look at the clock.|Clock]]
+- [[Check the smartphone.|Smartphone]]
+- [[Investigate the GameLab door.|GameLab - Door]]
 
-:: Second Building - 2nd Floor {"position":"750,300","size":"100,100"}
-<h3>Second Building - 2nd Floor</h3>
-<p>As you step out of GameLab.. </p>
-What do you do?
-- [[I wonder if my friends are okay..|Main Building - Ground Floor]]
-- [[I should probably look for food.|Netto]]
-- [[Fuck this shit I'm out.|Streets of DR Byen]]
+:: Clock {"position":"475,300","size":"100,100"}
+<p>You glance up at the wall clock. It’s 4:37 AM, Saturday. 
+A memory tugs at you – the LAN party, the thrill of the games, 
+the chatter of your friends. But why is it so silent now?</p>
 
-:: Streets of DR Byen {"position":"800,225","size":"100,100"}
-<h3></h3>
-<p></p>
+- [[Investigate the door.|GameLab - Door]]
 
-:: Main Building - Ground Floor {"position":"800,525","size":"100,100"}
-(set: $energy to it - 10)
-<h3></h3>
-<p></p>
+:: Smartphone {"position":"475,500","size":"100,100"}
+<p>You reach for your smartphone, its screen flashing with a 
+barrage of missed calls and unread messages. Most are from 
+friends and family, their tone growing increasingly frantic, 
+"Are you okay?", "Stay where you are!", "Avoid people!"</p>
+<p>Amidst the notifications, news headlines scream out, 
+mentioning chaos, a citywide emergency, and some unknown 
+outbreak.</p>
 
-:: Netto {"position":"800,825","size":"100,100"}
-(set: $energy to it - 20)
-<h3>Netto</h3>
-<p>
-As you arrive to Netto...glass windows are broken...
-</p>
-No one seems to be here, should you step in?
+- [[Investigate the door.|GameLab - Door]]
 
-- [[Maybe I should look around.|Netto 2]]
-- [[Probably shouldn't..|Streets of DR Byen]]
+:: GameLab - Door {"position":"650,400","size":"100,100"}
+<p>You approach the main door of the game room, a faint 
+draft coming from the hallway outside. As you inch closer, 
+an unsettling sound seeps in, echoing through the silence—a 
+slow, labored breathing, punctuated by occasional gurgles 
+and moans.</p>
+
+- [[Open the door and step out.|Hallway]]
+- [[Go back, close the door, and look around for something to defend yourself with.|GameLab2]]
+
+
+:: GameLab2 {"position":"675,250","size":"100,100"}
+<p>Not willing to face the unknown just yet, you retreat and 
+silently push the door shut. You realize you need something, 
+anything, to defend yourself. You scan the room: There's a 
+metal bar from a dismantled PC stand, a thick glass bottle 
+from one of the energy drinks, and a long ethernet cable. 
+Each could be a potential weapon or tool.</p>
+
+Which do you choose?
+
+1. (link: 'Grab the metal bar.')[
+  (set: $inventory to it + (a:'Metal Bar'))
+  (goto: 'GameLab3')
+  ]
+
+2. (link: 'Take the glass bottle.')[
+  (set: $inventory to it + (a:'Glass Bottle'))
+  (goto: 'GameLab3')
+  ]
+
+3. (link: 'Take the ethernet cable.')[
+  (set: $inventory to it + (a:'Ethernet Cable'))
+  (goto: 'GameLab3')
+  ]
+
+
+:: GameLab3 {"position":"775,250","size":"100,100"}
+You obtained (print: $inventory's 1st). This may assist you in your current situation.
+
+[[Continue..|Hallway]]
+
+
+:: Hallway {"position":"800,400","size":"100,100"}
+<p>Gathering your courage, you decide that hiding won’t do 
+any good. You need answers, and perhaps whoever or whatever 
+is in the hallway holds the key to understanding this 
+surreal nightmare. Carefully, you turn the handle, hoping 
+not to make a sound, and step into the dim corridor.</p>
+
+[[Continue..|Hallway2]]
+
+:: Hallway2 {"position":"925,400","size":"100,100"}
+(if: $inventory contains 'Metal Bar')[
+  <p>As you step into the hallway, the dim light barely 
+  illuminates the figure staggering towards you. 
+  Panic sets in, but you grip the metal bar tightly. 
+  As the creature lunges, you swing, aiming for its head. 
+  The bar connects with a sickening thud, knocking the 
+  creature to the ground, but not before its nails scratch 
+  your arm. The confrontation has cost you some energy.</p>
+
+  (set: $energy to it - 20)
+](elseif: $inventory contains 'Glass Bottle')[
+  <p>Holding the glass bottle firmly, you tread cautiously 
+  into the hallway. The figure, now close enough to see its 
+  disfigured face, snarls and lunges at you. In a reflexive 
+  motion, you break the bottle against the wall, turning it 
+  into a jagged weapon, and stab the creature. It goes down
+  , but in the struggle, you get a few cuts from the broken 
+  glass, draining your stamina and causing minor injuries.</p>
+
+  (set: $energy to it - 30)
+](elseif: $inventory contains 'Ethernet Cable')[
+  <p>Clutching the coiled ethernet cable, you hesitantly 
+  step into the corridor. The creature, hearing your 
+  movement, quickly turns and approaches. As it lunges, you 
+  wrap the cable around its neck, pulling with all your 
+  might. The creature struggles and thrashes but eventually 
+  goes limp. The prolonged fight and the sheer force needed 
+  to keep the creature at bay has taken a considerable toll 
+  on your strength.</p>
+
+  (set: $energy to it - 40)
+](else:)[
+  You punched your way through while avoiding bites. You're
+  now super tired.
+
+  (set: $energy to it - 70)
+]
+
+[[Continue..|Hallway3]]
+
+:: Hallway3 {"position":"1050,400","size":"100,100"}
+<p>Post-encounter, as the adrenaline subsides, you're left 
+with an overwhelming sense of dread. The university, once a 
+sanctuary of learning, now seems like a maze of horrors. The 
+weapon choice might have saved you now, but there will be 
+more challenges ahead. It’s essential to stay vigilant, 
+conserve energy, and gather more resources to survive this 
+ordeal.</p>
