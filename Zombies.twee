@@ -30,38 +30,59 @@ Inventory:
 
 :: The Beginning {"position":"650,300","size":"100,100"}
 <h3>The Beginning</h3>
-The screen fades from black to the dimly lit university game room. We see rows of high-end PCs, with the hum of the computers and the occasional flickering fluorescent light. The room is littered with empty snack packets, energy drink cans, and board games. There's a vibe of a night well spent. The clock on the wall shows 4:37 AM.
+<p>
+The screen fades from black to the dimly lit university 
+game room. We see rows of high-end PCs, with the hum of the 
+computers and the occasional flickering fluorescent light. 
+The room is littered with empty snack packets, energy drink 
+cans, and board games. There's a vibe of a night well spent. 
+The clock on the wall shows 4:37 AM.
+</p>
 
 [[Get Up.|GameLab]]
 
 :: GameLab {"position":"650,300","size":"100,100"}
 <h3>GameLab</h3>
-You stir from a makeshift bed on the couch, groggy. You have been attending a LAN party that started Friday evening. You remember laughing, playing, and eventually, fatigue causing you to drift off to sleep amidst the glow of monitors.
-As you stand up, you notice the eeriness: the main game screen still displays a paused game, but the in-game sounds are replaced with an unsettling silence. The only other sound is a distant, ominous alarm – probably the university's emergency system.
+<p>
+You stir from a makeshift bed on the couch, groggy. You 
+have been attending a LAN party that started Friday evening. 
+You remember laughing, playing, and eventually, fatigue causing 
+you to drift off to sleep amidst the glow of monitors.
+</p>
+
+<p>As you stand up, you notice the eeriness: the main game 
+screen still displays a paused game, but the in-game sounds 
+are replaced with an unsettling silence. The only other sound 
+is a distant, ominous alarm – probably the university's 
+emergency system.
+</p>
 
 [[Step out of GameLab.|Second Building - 2nd Floor]]
 
 :: Second Building - 2nd Floor {"position":"750,300","size":"100,100"}
 <h3>Second Building - 2nd Floor</h3>
-As you step out of GameLab..
+<p>As you step out of GameLab.. </p>
 What do you do?
 - [[I wonder if my friends are okay..|Main Building - Ground Floor]]
 - [[I should probably look for food.|Netto]]
 - [[Fuck this shit I'm out.|Streets of DR Byen]]
 
 :: Streets of DR Byen {"position":"800,225","size":"100,100"}
+<h3></h3>
+<p></p>
 
 :: Main Building - Ground Floor {"position":"800,525","size":"100,100"}
 (set: $energy to it - 10)
+<h3></h3>
+<p></p>
+
 :: Netto {"position":"800,825","size":"100,100"}
 (set: $energy to it - 20)
 <h3>Netto</h3>
+<p>
 As you arrive to Netto...glass windows are broken...
+</p>
 No one seems to be here, should you step in?
 
 - [[Maybe I should look around.|Netto 2]]
 - [[Probably shouldn't..|Streets of DR Byen]]
-
-
-:: StoryScript [script]
-// Reference the elements of the health bar
