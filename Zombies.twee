@@ -557,6 +557,10 @@ tw-hook p {
  color: #ADADAD;
 }
 
+tw-transition-container {
+	height: 100%;
+}
+
 tw-story {
   background: #252829;
   padding: 30px;
@@ -569,6 +573,8 @@ tw-story {
 
 tw-passage {
   height: 100%;
+  transition: none !important;
+  transition-property: none ;
 }
 
 tw-link, .enchantment-link {
@@ -659,5 +665,5 @@ img {
     align-items: center;
     max-width: 360px;
     margin: auto;
-  margin-top: -54px;
+  margin-top: -58px;
 }
