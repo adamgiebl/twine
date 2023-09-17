@@ -442,15 +442,21 @@ Zombies at ITU
   of high-end PCs, the hum of the computers and the occasional 
   flickering fluorescent light. The room is littered with empty 
   snack packets, energy drink cans, and board games.</p>
+  
   <div class="choices">
-  (link-reveal: 'Look at the clock.')[<p>You glance up at the wall clock. It’s 4:37 AM, Saturday. 
-    A memory tugs at you – the LAN party, the thrill of the games, 
+  [[Explore your surroundings|The Beginning.5]]<br>
+  </div>
+}
+
+
+:: The Beginning.5 {"position":"225,575","size":"100,100"}
+{
+  <p>You feel disoriented</p>
+  <div class="choices">
+  (link-reveal: 'Look at the clock.')[<p>You glance up at the wall clock. It’s 4:37 AM, Saturday. A memory tugs at you – the LAN party, the thrill of the games, 
     the chatter of your friends. But why is it so silent now?</p>
   ]
-  (link-reveal: 'Check the smartphone.')[<p>You reach for your smartphone, its screen flashing with a 
-    barrage of missed calls and unread messages. Most are from 
-    friends and family, their tone growing increasingly frantic, 
-    "Are you okay?", "Stay where you are!", "Avoid people!". You have no reception and battery at 20%.</p>
+  (link-reveal: 'Check the smartphone.')[<p>You reach for your smartphone, its screen flashing with a barrage of missed calls and unread messages. Most are from friends and family, their tone growing increasingly frantic, "Are you okay?", "Stay where you are!", "Avoid people!". You have no reception and battery at 20%.</p>
   ]
   [[Investigate the GameLab door.|GameLab - Door]]<br>
   </div>
@@ -535,7 +541,6 @@ Zombies at ITU
 
 
 :: StoryStylesheet [stylesheet]
-
 @import url('https://fonts.googleapis.com/css?family=Josefin Sans');
 
 body {
@@ -557,10 +562,6 @@ tw-hook p {
  color: #ADADAD;
 }
 
-tw-transition-container {
-	height: 100%;
-}
-
 tw-story {
   background: #252829;
   padding: 30px;
@@ -573,8 +574,6 @@ tw-story {
 
 tw-passage {
   height: 100%;
-  transition: none !important;
-  transition-property: none ;
 }
 
 tw-link, .enchantment-link {
@@ -665,5 +664,5 @@ img {
     align-items: center;
     max-width: 360px;
     margin: auto;
-  margin-top: -58px;
+  margin-top: -54px;
 }
