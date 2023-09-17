@@ -165,27 +165,12 @@ img {
 :: The Beginning {"position":"200,400","size":"100,100"}
 {
   <img src="https://adamgiebl.github.io/twine/images/passage.png">
-  <h3>The Beginning</h3>
-  <p>The screen fades from black to the dimly lit university 
-  game room. Rows of high-end PCs, with the hum of the 
-  computers and the occasional flickering fluorescent light. 
-  The room is littered with empty snack packets, energy drink 
-  cans, and board games. There's a vibe of a night well spent. </p>
-  [[Continue..|GameLab]]
-}
-
-:: GameLab {"position":"325,400","size":"100,100"}
-{
-  <img src="https://adamgiebl.github.io/twine/images/passage.png">
-  <p>You stir from a makeshift bed on the couch, groggy. You 
-  have been attending a LAN party that started Friday evening. 
-  You remember laughing, playing, and eventually, fatigue causing 
-  you to drift off to sleep amidst the glow of monitors.</p>
-  <p>As you stand up, you notice the eeriness: the main game 
-  screen still displays a paused game, but the in-game sounds 
-  are replaced with an unsettling silence. The only other sound 
-  is a distant, ominous alarm – probably the university's 
-  emergency system.</p>
+  <p>You slowly open your eyes, adjusting to the dimly lit 
+  surroundings of the ITU game lab. You’re surrounded by rows 
+  of high-end PCs, the hum of the computers and the occasional 
+  flickering fluorescent light. The room is littered with empty 
+  snack packets, energy drink cans, and board games. There's a 
+  vibe of a night well spent.</p>
   <br>
   - (link-reveal: 'Look at the clock.')[<p>You glance up at the wall clock. It’s 4:37 AM, Saturday. 
     A memory tugs at you – the LAN party, the thrill of the games, 
@@ -530,7 +515,6 @@ img {
 :: Security room {"position":"1050,400","size":"100,100"}
 {
   <img src="https://adamgiebl.github.io/twine/images/security.png">
-  <h3>Security Room</h3>
   <p>You cautiously make your way to the west wing corridor, 
   the janitor's words echoing in your mind. As you approach 
   a particularly dark corner, you notice a door discreetly
