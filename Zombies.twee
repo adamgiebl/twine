@@ -11,6 +11,8 @@ Zombies at ITU
 }
 
 :: StoryStylesheet [stylesheet]
+@import url('https://fonts.googleapis.com/css?family=Josefin Sans');
+
 body {
   margin: auto;
   max-width: 800px;
@@ -18,9 +20,19 @@ body {
 }
 
 tw-story {
-  background: #202020;
+  background: #252829;
   padding: 30px;
   position: relative;
+  font-family: Josefin Sans;
+  color: #ADADAD;
+}
+
+tw-link, .enchantment-link {
+	color: #4db6e3;
+}
+
+tw-link:hover, .enchantment-link:hover {
+	color: #00BFFF;
 }
 
 img {
@@ -29,6 +41,59 @@ img {
   margin-right: auto;
   max-width: 100%;
   height: auto;
+}
+
+.energy-text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 17px;
+  color: #EEC535;
+  width: auto;
+}
+
+.energy-text .label {
+  color: white;
+  margin-right: 10px;
+}
+
+.energy-text div {
+  white-space: nowrap;
+}
+
+.energy-text svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.minus-energy-text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 17px;
+  color: #EE5635;
+  width: auto;
+}
+
+.minus-energy-text .label {
+  color: white;
+  margin-right: 10px;
+}
+
+.minus-energy-text div {
+  white-space: nowrap;
+}
+
+.minus-energy-text svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.dialogue {
+  color: #B7ED8D;
+  font-style: italic;
 }
 
 :: init [startup] {"position":"25,25","size":"100,100"}
@@ -47,10 +112,10 @@ img {
     <div>
       Inventory:
       (if: $inventory's length is 0)[\
-        nothing.
+        Empty..
       ](else:)[
         (for: each _item, ...$inventory)[
-          _item (unless: $inventory's last is _item)[, ]
+          _item (unless: $inventory's last is _item)[,]
         ]
       ]
     </div>
@@ -105,9 +170,8 @@ img {
   game room. Rows of high-end PCs, with the hum of the 
   computers and the occasional flickering fluorescent light. 
   The room is littered with empty snack packets, energy drink 
-  cans, and board games. There's a vibe of a night well spent.</p>
-  <br>
-  [[Get Up.|GameLab]]<br>
+  cans, and board games. There's a vibe of a night well spent. </p>
+  [[Continue..|GameLab]]
 }
 
 :: GameLab {"position":"325,400","size":"100,100"}
@@ -179,13 +243,13 @@ img {
   any good. You need answers, and perhaps whoever or whatever 
   is in the hallway holds the key to understanding this 
   surreal nightmare. Carefully, you turn the handle, hoping 
-  not to make a sound, and step into the dim corridor.</p>
-  <br>
-  [[Continue..|Hallway2]]<br>
+  not to make a sound, and step into the dim corridor. </p>
+  [[Continue..|Hallway2]]
 }
 
 :: Hallway2 {"position":"925,400","size":"100,100"}
 {
+  <img src="https://adamgiebl.github.io/twine/images/zombie_hallway.png">
   (if: $inventory contains 'Metal Bar')[
     <p>As you step into the hallway, the dim light barely 
     illuminates the figure staggering towards you. 
@@ -195,6 +259,13 @@ img {
     creature to the ground, but not before its nails scratch 
     your arm. The confrontation has cost you some energy.</p>
     (set: $energy to it - 20)
+    <div class="minus-energy-text">
+      <div class="label">Energy</div> 
+      <div>- 20</div> 
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
   ](elseif: $inventory contains 'Glass Bottle')[
     <p>Holding the glass bottle firmly, you tread cautiously 
     into the hallway. The figure, now close enough to see its 
@@ -204,6 +275,13 @@ img {
     , but in the struggle, you get a few cuts from the broken 
     glass, draining your stamina and causing minor injuries.</p>
     (set: $energy to it - 30)
+    <div class="minus-energy-text">
+      <div class="label">Energy</div> 
+      <div>- 30</div> 
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
   ](elseif: $inventory contains 'Ethernet Cable')[
     <p>Clutching the coiled ethernet cable, you hesitantly 
     step into the corridor. The creature, hearing your 
@@ -214,6 +292,13 @@ img {
     to keep the creature at bay has taken a considerable toll 
     on your strength.</p>
     (set: $energy to it - 40)
+    <div class="minus-energy-text">
+      <div class="label">Energy</div> 
+      <div>- 40</div> 
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
   ](else:)[
     <p>Armed with nothing but your own resolve, you bravely 
     step into the hallway. The silhouette of the creature 
@@ -229,6 +314,13 @@ img {
     the scuffle, leaves you gasping for breath and extremely 
     fatigued.</p>
     (set: $energy to it - 60)
+    <div class="minus-energy-text">
+      <div class="label">Energy</div> 
+      <div>- 60</div> 
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
   ]
   (if: $inventory's length is not 0)[
     <p>Post-encounter, as the adrenaline subsides, you're left 
@@ -237,9 +329,8 @@ img {
     weapon choice might have saved you now, but there will be 
     more challenges ahead. It’s essential to stay vigilant, 
     conserve energy, and gather more resources to survive this 
-    ordeal.</p>]
-  <br>
-  [[Continue..|Hallway3]]<br>
+    ordeal. </p>]
+    [[Continue..|Hallway3]]
 }
 
 :: Hallway3 {"position":"1050,400","size":"100,100"}
@@ -282,6 +373,14 @@ img {
       than before.</p>
       (set: $exitVisited to true)
       <br>
+      <div class="minus-energy-text">
+        <div class="label">Energy</div> 
+        <div>- 20</div> 
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <br>
       - [[Search nearby rooms.|Search nearby rooms]]<br>
       (if: $barricadeVisited is false)[- [[Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]<br>]
     ](else:)[
@@ -292,8 +391,8 @@ img {
       the creatures, its fingers locked onto you with a 
       vice-like grip. Panic sets in, but your weakened state 
       makes it impossible to shake free. The world blurs as the 
-      creature drags you down, and darkness soon engulfs you.</p>
-      - [[Continue..|Death]]
+      creature drags you down, and darkness soon engulfs you. </p>
+      [[Continue..|Death]]
     ]
   ]<br>
 }
@@ -322,6 +421,14 @@ img {
   best.</p>
   (set: $barricadeVisited to true)
   <br>
+  <div class="energy-text">
+    <div class="label">Energy</div> 
+    <div>+ 20</div> 
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </div>
+  <br>
   (if: $exitVisited is false)[- [[Head to the exit.|Head to the exit]]<br>]
   - [[Search nearby rooms.|Search nearby rooms]]<br>
 }
@@ -333,7 +440,8 @@ img {
   one of the nearby rooms, discovering a panic-stricken janitor. 
   He clutches a strange, intricate key card adorned with peculiar 
   symbols, his eyes wide with fear.</p>
-  <p>Janitor: "This... this isn't just any key! It opens doors 
+  <p>Janitor:</p>
+  <p class="dialogue">"This... this isn't just any key! It opens doors 
   that should never be opened. I... I shouldn’t have it.”</p>
   - (linkreveal: 'Take the key.')[
     <p>He thrusts the key card into your hands,clearly eager to 
@@ -362,6 +470,14 @@ img {
     pounding.</p>
     (set: $energy to it - 30)
     <br>
+    <div class="minus-energy-text">
+      <div class="label">Energy</div> 
+      <div>- 30</div> 
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+    <br>
     - [[Go to the elevator.|Elevator]]<br>
     (if: $janitorAsked is false)[- [[Talk to the janitor.|Talk to the janitor]]]
   ](else:)[<p>You decide to venture towards the stairs, hoping it could 
@@ -371,9 +487,8 @@ img {
     a corner, a horde of those creatures suddenly emerges, 
     blocking your path. Your already exhausted state makes it 
     impossible to fight them off or retreat in time. The world 
-    fades to black as they close in.</p>
-    <br>
-    - [[Continue..|Death]]<br>
+    fades to black as they close in. </p>
+    [[Continue..|Death]]<br>
   ]
 }
 :: Talk to the janitor {"position":"1050,400","size":"100,100"}
@@ -383,7 +498,7 @@ img {
   |1>[- (linkreveal: 'Did you cause all of this with this keycard?')[
       (hide:?2,?3)
       (set: $janitorAsked to true)
-      <p>Janitor, defensive and agitated: "No! I found it, that's all! I didn't ask for any of this to happen!"</p>
+      <p>Janitor, defensive and agitated:</p> <p class="dialogue">"No! I found it, that's all! I didn't ask for any of this to happen!"</p>
       <br>
       (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
       - [[Go to the elevator.|Elevator]]<br>
@@ -393,7 +508,7 @@ img {
     - (linkreveal: 'Why are you hiding in here? Are you involved in what\'s happening?')[
       (hide:?1,?3)
       (set: $janitorAsked to true)
-      <p>Janitor, looking hurt and offended: "Why would you think that? I'm as scared as you are! I just work here."</p>
+      <p>Janitor, looking hurt and offended:</p> <p class="dialogue">"Why would you think that? I'm as scared as you are! I just work here."</p>
       <br>
       (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
       - [[Go to the elevator.|Elevator]]<br>
@@ -403,7 +518,7 @@ img {
     - (linkreveal: 'There must be a reason you have this keycard. Does it lead to a safe place?')[
       (hide:?1,?2)
       (set: $janitorAsked to true)
-      <p>Janitor, hesitatingly: "Well... yes. There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there."</p>
+      <p>Janitor, hesitatingly:</p> <p class="dialogue">"Well... yes. There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there."</p>
       <br>
       (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
       - [[Go to the elevator.|Elevator]]<br>
@@ -431,6 +546,14 @@ img {
   energy.</p> 
   (set: $energy to it + 20)
   <br>
+  <div class="energy-text">
+    <div class="label">Energy</div> 
+    <div>+ 20</div> 
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </div>
+  <br>
   - [[Continue exploring the room.|Security room2]]<br>
 }
 :: Security room2 {"position":"1050,400","size":"100,100"}
@@ -440,10 +563,10 @@ img {
   most of the entries are mundane - reports of lost student IDs, 
   minor altercations, and the like. However, a particular entry 
   from a week ago stands out:</p>
-  <p><i>"Received a call from Dr. Sorensen about an alarm tripped 
+  <p class="dialogue">"Received a call from Dr. Sorensen about an alarm tripped 
   in the basement level. Wasn’t aware we had a basement level. 
   Checked with management and they were evasive. Need to look 
-  into this further."</i></p>
+  into this further."</p>
   <p>Beside it, a sticky note reads: "NOTE: Elevator access 
   restricted to the -1 floor. Keycard required."</p>
   <p>Could this be the mysterious floor the janitor hinted at? 
@@ -471,4 +594,13 @@ img {
     lies ahead. The elevator's soft chime signals its arrival, 
     and the doors slowly begin to open...</p>
   ]
+  <br>
+  - [[The End.|End]]<br>
+}
+
+:: End {"position":"1050,400","size":"100,100"}
+{
+  <h3>Thank you for playing!</h3>
+  <p>That was the end of our prototype. We hope you enjoyed the 
+  game and its different paths and mechanics</p>
 }
