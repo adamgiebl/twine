@@ -99,7 +99,7 @@ img {
 
 :: The Beginning {"position":"200,400","size":"100,100"}
 {
-  <img src="">
+  <img src="https://adamgiebl.github.io/twine/images/passage.png">
   <h3>The Beginning</h3>
   <p>The screen fades from black to the dimly lit university 
   game room. Rows of high-end PCs, with the hum of the 
@@ -112,7 +112,7 @@ img {
 
 :: GameLab {"position":"325,400","size":"100,100"}
 {
-  <h3>GameLab</h3>
+  <img src="https://adamgiebl.github.io/twine/images/passage.png">
   <p>You stir from a makeshift bed on the couch, groggy. You 
   have been attending a LAN party that started Friday evening. 
   You remember laughing, playing, and eventually, fatigue causing 
@@ -328,7 +328,7 @@ img {
 
 :: Search nearby rooms {"position":"1050,400","size":"100,100"}
 {
-  <img src="">
+  <img src="https://adamgiebl.github.io/twine/images/rooms.png">
   <p>Navigating the dimly lit hallways, you cautiously peer into 
   one of the nearby rooms, discovering a panic-stricken janitor. 
   He clutches a strange, intricate key card adorned with peculiar 
@@ -414,6 +414,7 @@ img {
 
 :: Security room {"position":"1050,400","size":"100,100"}
 {
+  <img src="https://adamgiebl.github.io/twine/images/security.png">
   <h3>Security Room</h3>
   <p>You cautiously make your way to the west wing corridor, 
   the janitor's words echoing in your mind. As you approach 
@@ -454,7 +455,7 @@ img {
 }
 :: Elevator {"position":"1050,400","size":"100,100"}
 {
-  <img src="">
+  <img src="https://adamgiebl.github.io/twine/images/elevator.png">
   (if: $inventory contains 'Key Card')[<p>
     Hoping for a safer passage, you approach the elevator and 
     scan the intricate keycard. For a moment, nothing happens. 
