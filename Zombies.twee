@@ -23,207 +23,449 @@ tw-story {
   position: relative;
 }
 
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  height: auto;
+}
+
 :: init [startup] {"position":"25,25","size":"100,100"}
 (set: $energy to 80)
 (set: $inventory to (a:))
+(set: $exitVisited to false)
+(set: $barricadeVisited to false)
+(set: $stairsVisited to false)
+(set: $janitorAsked to false)
 
 :: header [header] {"position":"150,25","size":"100,100"}
 {
-<header>
-  <div>
-    Inventory:
-    (if: $inventory's length is 0)[\
-      nothing.
-    ](else:)[
-      (for: each _item, ...$inventory)[
-        _item (unless: $inventory's last is _item)[, ]
-      ]
-    ]
-  </div>
-  <div class="energy-wrapper">
-    <div class="energy">
-      (for: each _i, ...(range: 1, $energy / 10))[
-        <div class="bar"></div>
+  <header>
+    <div>
+      Inventory:
+      (if: $inventory's length is 0)[\
+        nothing.
+      ](else:)[
+        (for: each _item, ...$inventory)[
+          _item (unless: $inventory's last is _item)[, ]
+        ]
       ]
     </div>
-  </div>
-</header>
-<style>
-  header {
-  padding: 14px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 40px;
-}
-.energy-wrapper {
-  padding: 10px;
-  background: rgb(48, 48, 48);
-  height: 50px;
-}
+    (if: $energy is > 100)[(set: $energy to 100)]
+    <div class="energy-wrapper">
+      <div class="energy">
+        (for: each _i, ...(range: 1, $energy / 10))[
+          <div class="bar"></div>
+        ]
+      </div>
+    </div>
+  </header>
+  <style>
+    header {
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    }
+    .energy-wrapper {
+      padding: 10px;
+      background: rgb(48, 48, 48);
+      height: 50px;
+    }
 
-.energy tw-hook {
-  --width: 140px;
-  width: var(--width);
-  height: 100%;
-  display: flex;
-}
+    .energy tw-hook {
+      --width: 140px;
+      width: var(--width);
+      height: 100%;
+      display: flex;
+    }
 
-.energy {
-  height: 100%;
-}
+    .energy {
+      height: 100%;
+    }
 
-.bar {
-  width: calc(var(--width) / 10);
-  height: 100%;
-  background: rgb(240, 227, 55);
-  border-right: 3px solid rgb(48, 48, 48);
-}
-</style>
+    .bar {
+      width: calc(var(--width) / 10);
+      height: 100%;
+      background: rgb(240, 227, 55);
+      border-right: 3px solid rgb(48, 48, 48);
+    }
+  </style>
 }
 
 :: The Beginning {"position":"200,400","size":"100,100"}
-<h3>The Beginning</h3>
-<p>The screen fades from black to the dimly lit university 
-game room. Rows of high-end PCs, with the hum of the 
-computers and the occasional flickering fluorescent light. 
-The room is littered with empty snack packets, energy drink 
-cans, and board games. There's a vibe of a night well spent.</p>
-
-[[Get Up.|GameLab]]
+{
+  <img src="">
+  <h3>The Beginning</h3>
+  <p>The screen fades from black to the dimly lit university 
+  game room. Rows of high-end PCs, with the hum of the 
+  computers and the occasional flickering fluorescent light. 
+  The room is littered with empty snack packets, energy drink 
+  cans, and board games. There's a vibe of a night well spent.</p>
+  <br>
+  [[Get Up.|GameLab]]<br>
+}
 
 :: GameLab {"position":"325,400","size":"100,100"}
-<h3>GameLab</h3>
-<p>You stir from a makeshift bed on the couch, groggy. You 
-have been attending a LAN party that started Friday evening. 
-You remember laughing, playing, and eventually, fatigue causing 
-you to drift off to sleep amidst the glow of monitors.</p>
-<p>As you stand up, you notice the eeriness: the main game 
-screen still displays a paused game, but the in-game sounds 
-are replaced with an unsettling silence. The only other sound 
-is a distant, ominous alarm – probably the university's 
-emergency system.</p>
-
-- [[Look at the clock.|Clock]]
-- [[Check the smartphone.|Smartphone]]
-- [[Investigate the GameLab door.|GameLab - Door]]
-
-:: Clock {"position":"475,300","size":"100,100"}
-<p>You glance up at the wall clock. It’s 4:37 AM, Saturday. 
-A memory tugs at you – the LAN party, the thrill of the games, 
-the chatter of your friends. But why is it so silent now?</p>
-
-- [[Investigate the door.|GameLab - Door]]
-
-:: Smartphone {"position":"475,500","size":"100,100"}
-<p>You reach for your smartphone, its screen flashing with a 
-barrage of missed calls and unread messages. Most are from 
-friends and family, their tone growing increasingly frantic, 
-"Are you okay?", "Stay where you are!", "Avoid people!"</p>
-<p>Amidst the notifications, news headlines scream out, 
-mentioning chaos, a citywide emergency, and some unknown 
-outbreak.</p>
-
-- [[Investigate the door.|GameLab - Door]]
+{
+  <h3>GameLab</h3>
+  <p>You stir from a makeshift bed on the couch, groggy. You 
+  have been attending a LAN party that started Friday evening. 
+  You remember laughing, playing, and eventually, fatigue causing 
+  you to drift off to sleep amidst the glow of monitors.</p>
+  <p>As you stand up, you notice the eeriness: the main game 
+  screen still displays a paused game, but the in-game sounds 
+  are replaced with an unsettling silence. The only other sound 
+  is a distant, ominous alarm – probably the university's 
+  emergency system.</p>
+  <br>
+  - (link-reveal: 'Look at the clock.')[<p>You glance up at the wall clock. It’s 4:37 AM, Saturday. 
+    A memory tugs at you – the LAN party, the thrill of the games, 
+    the chatter of your friends. But why is it so silent now?</p>
+  ]<br>
+  - (link-reveal: 'Check the smartphone.')[<p>You reach for your smartphone, its screen flashing with a 
+    barrage of missed calls and unread messages. Most are from 
+    friends and family, their tone growing increasingly frantic, 
+    "Are you okay?", "Stay where you are!", "Avoid people!"</p>
+    <p>Amidst the notifications, news headlines scream out, 
+    mentioning chaos, a citywide emergency, and some unknown 
+    outbreak.</p>
+  ]<br>
+  - [[Investigate the GameLab door.|GameLab - Door]]<br>
+}
 
 :: GameLab - Door {"position":"650,400","size":"100,100"}
-<p>You approach the main door of the game room, a faint 
-draft coming from the hallway outside. As you inch closer, 
-an unsettling sound seeps in, echoing through the silence—a 
-slow, labored breathing, punctuated by occasional gurgles 
-and moans.</p>
-
-- [[Open the door and step out.|Hallway]]
-- [[Go back, close the door, and look around for something to defend yourself with.|GameLab2]]
-
-
+{
+  <p>You approach the main door of the game room, a faint 
+  draft coming from the hallway outside. As you inch closer, 
+  an unsettling sound seeps in, echoing through the silence—a 
+  slow, labored breathing, punctuated by occasional gurgles 
+  and moans.</p>
+  <br>
+  You're faced with a choice:<br>
+  - [[Open the door and step out.|Hallway]]<br>
+  - [[Go back, close the door, and look around for something to defend yourself with.|GameLab2]]<br>
+}
 :: GameLab2 {"position":"675,250","size":"100,100"}
-<p>Not willing to face the unknown just yet, you retreat and 
-silently push the door shut. You realize you need something, 
-anything, to defend yourself. You scan the room: There's a 
-metal bar from a dismantled PC stand, a thick glass bottle 
-from one of the energy drinks, and a long ethernet cable. 
-Each could be a potential weapon or tool.</p>
-
-Which do you choose?
-
-1. (link: 'Grab the metal bar.')[
-  (set: $inventory to it + (a:'Metal Bar'))
-  (goto: 'GameLab3')
-  ]
-
-2. (link: 'Take the glass bottle.')[
-  (set: $inventory to it + (a:'Glass Bottle'))
-  (goto: 'GameLab3')
-  ]
-
-3. (link: 'Take the ethernet cable.')[
-  (set: $inventory to it + (a:'Ethernet Cable'))
-  (goto: 'GameLab3')
-  ]
-
-
-:: GameLab3 {"position":"775,250","size":"100,100"}
-You obtained (print: $inventory's 1st). This may assist you in your current situation.
-
-[[Continue..|Hallway]]
-
+{
+  <p>Not willing to face the unknown just yet, you retreat and 
+  silently push the door shut. You realize you need something, 
+  anything, to defend yourself. You scan the room: There's a 
+  metal bar from a dismantled PC stand, a thick glass bottle 
+  from one of the energy drinks, and a long ethernet cable. 
+  Each could be a potential weapon or tool.</p><br>
+  Which do you choose?<br>
+  1. (link: 'Grab the metal bar.')[
+    (set: $inventory to it + (a:'Metal Bar'))
+    (goto: 'Hallway')
+    ]<br>
+  2. (link: 'Take the glass bottle.')[
+    (set: $inventory to it + (a:'Glass Bottle'))
+    (goto: 'Hallway')
+    ]<br>
+  3. (link: 'Take the ethernet cable.')[
+    (set: $inventory to it + (a:'Ethernet Cable'))
+    (goto: 'Hallway')
+    ]<br>
+}
 
 :: Hallway {"position":"800,400","size":"100,100"}
-<p>Gathering your courage, you decide that hiding won’t do 
-any good. You need answers, and perhaps whoever or whatever 
-is in the hallway holds the key to understanding this 
-surreal nightmare. Carefully, you turn the handle, hoping 
-not to make a sound, and step into the dim corridor.</p>
-
-[[Continue..|Hallway2]]
+{
+  <p>Gathering your courage, you decide that hiding won’t do 
+  any good. You need answers, and perhaps whoever or whatever 
+  is in the hallway holds the key to understanding this 
+  surreal nightmare. Carefully, you turn the handle, hoping 
+  not to make a sound, and step into the dim corridor.</p>
+  <br>
+  [[Continue..|Hallway2]]<br>
+}
 
 :: Hallway2 {"position":"925,400","size":"100,100"}
-(if: $inventory contains 'Metal Bar')[
-  <p>As you step into the hallway, the dim light barely 
-  illuminates the figure staggering towards you. 
-  Panic sets in, but you grip the metal bar tightly. 
-  As the creature lunges, you swing, aiming for its head. 
-  The bar connects with a sickening thud, knocking the 
-  creature to the ground, but not before its nails scratch 
-  your arm. The confrontation has cost you some energy.</p>
-
-  (set: $energy to it - 20)
-](elseif: $inventory contains 'Glass Bottle')[
-  <p>Holding the glass bottle firmly, you tread cautiously 
-  into the hallway. The figure, now close enough to see its 
-  disfigured face, snarls and lunges at you. In a reflexive 
-  motion, you break the bottle against the wall, turning it 
-  into a jagged weapon, and stab the creature. It goes down
-  , but in the struggle, you get a few cuts from the broken 
-  glass, draining your stamina and causing minor injuries.</p>
-
-  (set: $energy to it - 30)
-](elseif: $inventory contains 'Ethernet Cable')[
-  <p>Clutching the coiled ethernet cable, you hesitantly 
-  step into the corridor. The creature, hearing your 
-  movement, quickly turns and approaches. As it lunges, you 
-  wrap the cable around its neck, pulling with all your 
-  might. The creature struggles and thrashes but eventually 
-  goes limp. The prolonged fight and the sheer force needed 
-  to keep the creature at bay has taken a considerable toll 
-  on your strength.</p>
-
-  (set: $energy to it - 40)
-](else:)[
-  You punched your way through while avoiding bites. You're
-  now super tired.
-
-  (set: $energy to it - 70)
-]
-
-[[Continue..|Hallway3]]
+{
+  (if: $inventory contains 'Metal Bar')[
+    <p>As you step into the hallway, the dim light barely 
+    illuminates the figure staggering towards you. 
+    Panic sets in, but you grip the metal bar tightly. 
+    As the creature lunges, you swing, aiming for its head. 
+    The bar connects with a sickening thud, knocking the 
+    creature to the ground, but not before its nails scratch 
+    your arm. The confrontation has cost you some energy.</p>
+    (set: $energy to it - 20)
+  ](elseif: $inventory contains 'Glass Bottle')[
+    <p>Holding the glass bottle firmly, you tread cautiously 
+    into the hallway. The figure, now close enough to see its 
+    disfigured face, snarls and lunges at you. In a reflexive 
+    motion, you break the bottle against the wall, turning it 
+    into a jagged weapon, and stab the creature. It goes down
+    , but in the struggle, you get a few cuts from the broken 
+    glass, draining your stamina and causing minor injuries.</p>
+    (set: $energy to it - 30)
+  ](elseif: $inventory contains 'Ethernet Cable')[
+    <p>Clutching the coiled ethernet cable, you hesitantly 
+    step into the corridor. The creature, hearing your 
+    movement, quickly turns and approaches. As it lunges, you 
+    wrap the cable around its neck, pulling with all your 
+    might. The creature struggles and thrashes but eventually 
+    goes limp. The prolonged fight and the sheer force needed 
+    to keep the creature at bay has taken a considerable toll 
+    on your strength.</p>
+    (set: $energy to it - 40)
+  ](else:)[
+    <p>Armed with nothing but your own resolve, you bravely 
+    step into the hallway. The silhouette of the creature 
+    becomes clearer, revealing its grotesque and mangled 
+    features. As it lunges at you, you muster all your 
+    strength, ducking and weaving to avoid its grasp. You 
+    manage to land a few solid blows, but the undead is 
+    relentless. The struggle is intense, pushing you to your 
+    physical limits. After a seemingly endless fight, you 
+    finally manage to overpower the creature, pushing it to 
+    the ground and incapacitating it. However, the sheer 
+    exertion, combined with minor injuries sustained during 
+    the scuffle, leaves you gasping for breath and extremely 
+    fatigued.</p>
+    (set: $energy to it - 60)
+  ]
+  (if: $inventory's length is not 0)[
+    <p>Post-encounter, as the adrenaline subsides, you're left 
+    with an overwhelming sense of dread. The university, once a 
+    sanctuary of learning, now seems like a maze of horrors. The 
+    weapon choice might have saved you now, but there will be 
+    more challenges ahead. It’s essential to stay vigilant, 
+    conserve energy, and gather more resources to survive this 
+    ordeal.</p>]
+  <br>
+  [[Continue..|Hallway3]]<br>
+}
 
 :: Hallway3 {"position":"1050,400","size":"100,100"}
-<p>Post-encounter, as the adrenaline subsides, you're left 
-with an overwhelming sense of dread. The university, once a 
-sanctuary of learning, now seems like a maze of horrors. The 
-weapon choice might have saved you now, but there will be 
-more challenges ahead. It’s essential to stay vigilant, 
-conserve energy, and gather more resources to survive this 
-ordeal.</p>
+{
+  <p>Still shaken from the terrifying encounter, the reality of 
+  the situation weighs heavily on you. The quiet of the 
+  university feels suffocating. Your breath is short, and every 
+  sound feels magnified. Your initial shock begins to fade as 
+  survival instincts kick in.</p>
+  <br>
+  What will you do next?<br>
+  - [[Head to the exit.|Head to the exit]]<br>
+  - [[Search nearby rooms.|Search nearby rooms]]<br>
+  - [[Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]<br>
+  (Choose wisely. Your decisions shape the path ahead.)
+}
+:: Head to the exit {"position":"1050,400","size":"100,100"}
+{
+  <p>As you make your way towards the exit, a sinking feeling 
+  takes hold. The revolving door ahead is barricaded from the 
+  outside, making it impassable. The shadows cast by the dim 
+  light reveal several bodies scattered around the exit, their 
+  stillness painting a grim picture.</p>
+  <p>But as you stand there, trying to process the sight, 
+  there's an unmistakable twitch among the fallen. One by one, 
+  some of the bodies begin to stir. Limbs contort, and the 
+  muffled groans of the reanimating dead fill the air. It's 
+  clear: escaping won't be as straightforward as you hoped.</p>
+  <br>
+  - (linkreveal: 'Go back to the main floor.')[
+    (if: $energy is >= 50)[
+      <p>Using the remnants of your strength, you turn on your 
+      heels and dash back towards the main floor. Behind you, 
+      the groans and hisses of the undead grow louder. One of 
+      the creatures, quicker than the rest, lunges for you, 
+      just grazing your leg with its rotting fingers. The 
+      close call costs you both in terms of physical energy 
+      and emotional toll. You make it to the main floor, heart 
+      pounding in your chest, but significantly more exhausted 
+      than before.</p>
+      (set: $exitVisited to true)
+      <br>
+      - [[Search nearby rooms.|Search nearby rooms]]<br>
+      (if: $barricadeVisited is false)[- [[Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]<br>]
+    ](else:)[
+      <p>As you desperately try to backtrack to the main floor, 
+      your steps falter, weakened by the draining energy. Just 
+      as you think you're in the clear, a chilling grasp 
+      tightens around your ankle. You glance down to see one of 
+      the creatures, its fingers locked onto you with a 
+      vice-like grip. Panic sets in, but your weakened state 
+      makes it impossible to shake free. The world blurs as the 
+      creature drags you down, and darkness soon engulfs you.</p>
+      - [[Continue..|Death]]
+    ]
+  ]<br>
+}
+:: Death {"position":"275,25","size":"100,100"}
+{
+  <p>As your vision fades, you wonder if your other choices would have
+  given you a different outcome...</p>
+  <br>
+  - (link: 'Retry?')[
+    (set: $inventory to (a:))
+    (set: $energy to 80)
+    (goto: 'The Beginning')
+  ]<br>
+}
+
+:: Barricade yourself and rest {"position":"1050,400","size":"100,100"}
+{
+  <p>Choosing safety, you quickly barricade the game room door 
+  with nearby furniture. Settling into a corner, you take deep, 
+  steadying breaths amidst the room's low hum. This short rest 
+  offers a brief reprieve from the chaos outside, allowing you 
+  to gather your strength.</p>
+  (set: $energy to it + 20)
+  <p>Feeling slightly rejuvenated, you realize the need to 
+  plan your next move. The room's security is temporary at 
+  best.</p>
+  (set: $barricadeVisited to true)
+  <br>
+  (if: $exitVisited is false)[- [[Head to the exit.|Head to the exit]]<br>]
+  - [[Search nearby rooms.|Search nearby rooms]]<br>
+}
+
+:: Search nearby rooms {"position":"1050,400","size":"100,100"}
+{
+  <img src="">
+  <p>Navigating the dimly lit hallways, you cautiously peer into 
+  one of the nearby rooms, discovering a panic-stricken janitor. 
+  He clutches a strange, intricate key card adorned with peculiar 
+  symbols, his eyes wide with fear.</p>
+  <p>Janitor: "This... this isn't just any key! It opens doors 
+  that should never be opened. I... I shouldn’t have it.”</p>
+  - (linkreveal: 'Take the key.')[
+    <p>He thrusts the key card into your hands,clearly eager to 
+    be rid of it. You examine it, pondering its purpose.</p>
+    (set: $inventory to it + (a:'Key Card'))
+    (linkreveal: 'What will you do next?')[
+      <br>
+      - [[Go explore the stairs.|Explore stairs]]<br>
+      - [[Go to the elevator.|Elevator]]<br>
+      - [[Talk to the janitor.|Talk to the janitor]]<br>
+    ]
+  ]
+}
+
+:: Explore stairs {"position":"1050,400","size":"100,100"}
+{
+  (set: $stairsVisited to true)
+  (if: $energy is >= 50)[<p>With a sense of purpose, you head towards the stairs. 
+    As you start your descent, a chilling sound grows louder 
+    — the unmistakable groans of the undead. Suddenly, a group 
+    of them comes into view, cutting off your path forward. 
+    Relying on your remaining energy and adrenaline, you turn 
+    and sprint back up the stairs, narrowly avoiding their 
+    grasping hands. The chase leaves you even more drained, 
+    but you manage to make it back to the main floor, heart 
+    pounding.</p>
+    (set: $energy to it - 30)
+    <br>
+    - [[Go to the elevator.|Elevator]]<br>
+    (if: $janitorAsked is false)[- [[Talk to the janitor.|Talk to the janitor]]]
+  ](else:)[<p>You decide to venture towards the stairs, hoping it could 
+    lead to safety. The echoing sound of your footsteps is the 
+    only thing accompanying you as you descend. The deeper you 
+    go, the more ominous the atmosphere becomes. As you round 
+    a corner, a horde of those creatures suddenly emerges, 
+    blocking your path. Your already exhausted state makes it 
+    impossible to fight them off or retreat in time. The world 
+    fades to black as they close in.</p>
+    <br>
+    - [[Continue..|Death]]<br>
+  ]
+}
+:: Talk to the janitor {"position":"1050,400","size":"100,100"}
+{
+  <p>You decide to press the janitor for more information, 
+  hoping he might have valuable insights.</p>
+  |1>[- (linkreveal: 'Did you cause all of this with this keycard?')[
+      (hide:?2,?3)
+      (set: $janitorAsked to true)
+      <p>Janitor, defensive and agitated: "No! I found it, that's all! I didn't ask for any of this to happen!"</p>
+      <br>
+      (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
+      - [[Go to the elevator.|Elevator]]<br>
+    ]<br>
+  ]
+  |2>[
+    - (linkreveal: 'Why are you hiding in here? Are you involved in what\'s happening?')[
+      (hide:?1,?3)
+      (set: $janitorAsked to true)
+      <p>Janitor, looking hurt and offended: "Why would you think that? I'm as scared as you are! I just work here."</p>
+      <br>
+      (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
+      - [[Go to the elevator.|Elevator]]<br>
+    ]<br>
+  ] 
+  |3>[
+    - (linkreveal: 'There must be a reason you have this keycard. Does it lead to a safe place?')[
+      (hide:?1,?2)
+      (set: $janitorAsked to true)
+      <p>Janitor, hesitatingly: "Well... yes. There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there."</p>
+      <br>
+      (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
+      - [[Go to the elevator.|Elevator]]<br>
+      - [[Go to the security room.|Security room]]<br>
+    ]<br>
+  ]
+}
+
+:: Security room {"position":"1050,400","size":"100,100"}
+{
+  <h3>Security Room</h3>
+  <p>You cautiously make your way to the west wing corridor, 
+  the janitor's words echoing in your mind. As you approach 
+  a particularly dark corner, you notice a door discreetly
+  placed, which leads to the security room.</p>
+  <p>The room is dim, only lit by the soft glow of multiple 
+  monitors displaying camera feeds from all around the 
+  university. In the corner, there's a small table with a 
+  half-eaten sandwich and a cup of cold coffee, probably 
+  left behind by a security guard during a hurried exit.</p>
+  <p>As you step inside, a wave of relief washes over you. 
+  This place feels safe, like a temporary haven. You take a 
+  moment to catch your breath, regaining some much-needed 
+  energy.</p> 
+  (set: $energy to it + 20)
+  <br>
+  - [[Continue exploring the room.|Security room2]]<br>
+}
+:: Security room2 {"position":"1050,400","size":"100,100"}
+{
+  <p>As you scan the security room, your attention is caught 
+  by an open logbook on the desk. Flipping through the pages, 
+  most of the entries are mundane - reports of lost student IDs, 
+  minor altercations, and the like. However, a particular entry 
+  from a week ago stands out:</p>
+  <p><i>"Received a call from Dr. Sorensen about an alarm tripped 
+  in the basement level. Wasn’t aware we had a basement level. 
+  Checked with management and they were evasive. Need to look 
+  into this further."</i></p>
+  <p>Beside it, a sticky note reads: "NOTE: Elevator access 
+  restricted to the -1 floor. Keycard required."</p>
+  <p>Could this be the mysterious floor the janitor hinted at? 
+  An unknown basement level, and now an outbreak? The pieces 
+  seem to connect in a disconcerting way.</p>
+  <p>The urgency to uncover what's really happening intensifies.</p>
+  <br>
+  - [[Go to the elevator.|Elevator]]<br>
+}
+:: Elevator {"position":"1050,400","size":"100,100"}
+{
+  <img src="">
+  (if: $inventory contains 'Key Card')[<p>
+    Hoping for a safer passage, you approach the elevator and 
+    scan the intricate keycard. For a moment, nothing happens. 
+    But then, the elevator panel flickers, revealing a new 
+    option: a floor marked "-1." This wasn't there before, or 
+    at least you've never noticed it.</p>
+    <p>Curiosity piqued and with the weight of the janitor's 
+    words in your mind, you decide to press the button for the 
+    floor below zero. The elevator doors close, and you can 
+    feel the slight descent as it takes you to an unknown part 
+    of the university.</p>
+    <p>You take a deep breath, bracing yourself for whatever 
+    lies ahead. The elevator's soft chime signals its arrival, 
+    and the doors slowly begin to open...</p>
+  ]
+}
