@@ -32,12 +32,14 @@ img {
 }
 
 :: init [startup] {"position":"25,25","size":"100,100"}
-(set: $energy to 80)
-(set: $inventory to (a:))
-(set: $exitVisited to false)
-(set: $barricadeVisited to false)
-(set: $stairsVisited to false)
-(set: $janitorAsked to false)
+{
+  (set: $energy to 80)
+  (set: $inventory to (a:))
+  (set: $exitVisited to false)
+  (set: $barricadeVisited to false)
+  (set: $stairsVisited to false)
+  (set: $janitorAsked to false)
+}
 
 :: header [header] {"position":"150,25","size":"100,100"}
 {
