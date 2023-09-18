@@ -30,13 +30,11 @@ Zombies at ITU
   <div class="energy-text">
     <div class="label">Energy</div> 
     <div>+ 20</div> 
-    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-    </svg>
+    $energyIcon
   </div>
   <div class="choices">
-    (if: $exitVisited is false)[[[Head to the exit.|Head to the exit]]]
-    [[Search nearby rooms.|Search nearby rooms]]
+    (if: $exitVisited is false)[[[$arrowForward Head to the exit.|Head to the exit]]]
+    [[$arrowForward Search nearby rooms.|Search nearby rooms]]
   </div>
 }
 </div>
@@ -55,7 +53,7 @@ Zombies at ITU
   makes it impossible to shake free. The world blurs as the 
   creature drags you down, and darkness soon engulfs you. </p>
   <h3 style="margin-top: 30px;">Your journey ends here.</h3>
-  <div class="choices">
+  <div class="choices" style="text-align: center;">
     (link: 'Try again')[
       (set: $energy to 80)
       (set: $inventory to (a:))
@@ -83,7 +81,7 @@ Zombies at ITU
   impossible to fight them off or retreat in time. The world 
   fades to black as they close in. </p>
   <h3 style="margin-top: 30px;">Your journey ends here.</h3>
-  <div class="choices">
+  <div class="choices" style="text-align: center;">
     (link: 'Try again')[
       (set: $energy to 80)
       (set: $inventory to (a:))
@@ -150,13 +148,11 @@ Zombies at ITU
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 30</div> 
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
+      $energyIcon
     </div>
     <div class="choices">
-      [[Go to the elevator.|Elevator]]
-      (if: $janitorAsked is false)[[[Talk to the janitor.|Talk to the janitor]]]
+      [[$arrowForward Go to the elevator.|Elevator]]
+      (if: $janitorAsked is false)[[[$chatIcon Talk to the janitor.|Talk to the janitor]]]
     </div>
   ](else:)[(goto: 'Death2')]
 }
@@ -174,8 +170,8 @@ Zombies at ITU
   
   You're faced with a choice:
   <div class="choices">
-  [[Open the door and step out.|Hallway]]
-  [[Go back, close the door, and look around for something to defend yourself with.|GameLab2]]
+  [[$arrowForward Open the door and step out.|Hallway]]
+  [[$arrowForward Go back, close the door, and look around for something to defend yourself with.|GameLab2]]
   </div>
 }
 </div>
@@ -192,15 +188,15 @@ Zombies at ITU
   Each could be a potential weapon or tool.</p>
   Which do you choose?
   <div class="choices">
-    (link: 'Grab the metal bar.')[
+    (link: '<div class="with-icon">$interactionIcon Grab the metal bar.</div>')[
       (set: $inventory to it + (a:'Metal Bar'))
       (goto: 'Hallway')
       ]
-    (link: 'Take the glass bottle.')[
+    (link: '<div class="with-icon">$interactionIcon Take the glass bottle.</div>')[
       (set: $inventory to it + (a:'Glass Bottle'))
       (goto: 'Hallway')
       ]
-    (link: 'Take the ethernet cable.')[
+    (link: '<div class="with-icon">$interactionIcon Take the ethernet cable.</div>')[
       (set: $inventory to it + (a:'Ethernet Cable'))
       (goto: 'Hallway')
       ]
@@ -218,7 +214,7 @@ Zombies at ITU
   surreal nightmare. Carefully, you turn the handle, hoping 
   not to make a sound, and step into the dim corridor. </p>
   <div class="choices">
-    [[Continue..|Hallway2]]
+    [[$arrowForward Continue..|Hallway2]]
   </div>
 }
 </div>
@@ -240,9 +236,7 @@ Zombies at ITU
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 20</div> 
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
+      $energyIcon
     </div>
   ](elseif: $inventory contains 'Glass Bottle')[
     <p>Holding the glass bottle firmly, you tread cautiously 
@@ -257,9 +251,7 @@ Zombies at ITU
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 30</div> 
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
+      $energyIcon
     </div>
   ](elseif: $inventory contains 'Ethernet Cable')[
     <p>Clutching the coiled ethernet cable, you hesitantly 
@@ -275,9 +267,7 @@ Zombies at ITU
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 40</div> 
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
+      $energyIcon
     </div>
   ](else:)[
     <p>Armed with nothing but your own resolve, you bravely 
@@ -298,13 +288,11 @@ Zombies at ITU
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 60</div> 
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
+      $energyIcon
     </div>
   ]
   <div class="choices">
-  [[Continue..|Hallway3]]
+  [[$arrowForward Continue..|Hallway3]]
   </div>
 }
 
@@ -320,9 +308,9 @@ Zombies at ITU
   
   What will you do next?
   <div class="choices" style="margin-bottom: 30px;">
-  [[Head to the exit.|Head to the exit]]
-  [[Search nearby rooms.|Search nearby rooms]]
-  [[Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]
+  [[$arrowForward Head to the exit.|Head to the exit]]
+  [[$arrowForward Search nearby rooms.|Search nearby rooms]]
+  [[$arrowForward Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]
   </div>
   (Choose wisely. Your decisions shape the path ahead.)
 }
@@ -344,7 +332,7 @@ Zombies at ITU
   clear: escaping won't be as straightforward as you hoped.</p>
 
   <div class="choices">
-  (linkreveal: 'Go back to the main floor.')[
+  (link-reveal: '<div class="with-icon">$arrowForward Go back to the main floor.</div>')[
     (if: $energy is >= 50)[
       <p>Using the remnants of your strength, you turn on your 
       heels and dash back towards the main floor. Behind you, 
@@ -360,13 +348,11 @@ Zombies at ITU
       <div class="minus-energy-text">
         <div class="label">Energy</div> 
         <div>- 20</div> 
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
+        $energyIcon
       </div>
       
-      [[Search nearby rooms.|Search nearby rooms]]
-      (if: $barricadeVisited is false)[[[Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]]
+      [[$arrowForward Search nearby rooms.|Search nearby rooms]]
+      (if: $barricadeVisited is false)[[[$arrowForward Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]]
     ](else:)[(goto: 'Death')]
   ]
   </div>
@@ -384,19 +370,23 @@ Zombies at ITU
   <p>Janitor:</p>
   <p class="dialogue">"This... this isn't just any key! It opens doors 
   that should never be opened. I... I shouldn’t have it.”</p>
-  (linkreveal: 'Take the key.')[
+  <div class="choices">
+  (link-reveal: '<div class="with-icon">$interactionIcon Take the key.</div>')[
     (replace: ?statsdisplay)[(display: 'stats')]
     <p>He thrusts the key card into your hands, clearly eager to 
     be rid of it. You examine it, pondering its purpose.</p>
     (set: $inventory to it + (a:'Key Card'))
-    (linkreveal: 'What will you do next?')[
     <div class="choices">
-        [[Go explore the stairs.|Explore stairs]]
-        [[Go to the elevator.|Elevator]]
-        [[Talk to the janitor.|Talk to the janitor]]
-      </div>
-    ]
+    (link-reveal: '<div class="with-icon">$arrowForward What will you do next?</div>')[
+      <div class="choices">
+          [[$arrowForward Go explore the stairs.|Explore stairs]]
+          [[$arrowForward Go to the elevator.|Elevator]]
+          [[$arrowForward Talk to the janitor.|Talk to the janitor]]
+        </div>
+      ]
+    </div>
   ]
+  </div>
 }
 
 
@@ -421,12 +411,10 @@ Zombies at ITU
   <div class="energy-text">
     <div class="label">Energy</div> 
     <div>+ 20</div> 
-    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-    </svg>
+    $energyIcon
   </div>
   <div class="choices">
-    [[Continue exploring the room.|Security room2]]
+    [[$arrowForward Continue exploring the room.|Security room2]]
   </div>
 }
 
@@ -443,17 +431,19 @@ Zombies at ITU
     in the basement level. Wasn’t aware we had a basement level. 
     Checked with management and they were evasive. Need to look 
     into this further."</p>
-    (link-reveal: 'Continue..')[
-      <p>Beside it, a sticky note reads: "NOTE: Elevator access 
-      restricted to the -1 floor. Keycard required."</p>
-      <p>Could this be the mysterious floor the janitor hinted at? 
-      An unknown basement level, and now an outbreak? The pieces 
-      seem to connect in a disconcerting way.</p>
-      <p>The urgency to uncover what's really happening intensifies.</p>
-      <div class="choices">
-        [[Go to the elevator.|Elevator]]
-      </div>
-    ]
+    <div class="choices">
+      (link-reveal: '<div class="with-icon">$arrowForward Continue..</div>')[
+        <p>Beside it, a sticky note reads: "NOTE: Elevator access 
+        restricted to the -1 floor. Keycard required."</p>
+        <p>Could this be the mysterious floor the janitor hinted at? 
+        An unknown basement level, and now an outbreak? The pieces 
+        seem to connect in a disconcerting way.</p>
+        <p>The urgency to uncover what's really happening intensifies.</p>
+        <div class="choices">
+          [[$arrowForward Go to the elevator.|Elevator]]
+        </div>
+      ]
+    </div>
   }
 </div>
 
@@ -464,99 +454,64 @@ Zombies at ITU
     <p>You decide to press the janitor for more information, 
     hoping he might have valuable insights.</p>
     <div class="choices">
-    |1>[(linkreveal: 'Did you cause all of this with this keycard?')[
+    |1>[(link-reveal: '<div class="with-icon">$chatIcon Did you cause all of this with this keycard?</div>')[
         (hide:?2,?3)
         (set: $janitorAsked to true)
         <p>Janitor, defensive and agitated:</p> <p class="dialogue">"No! I found it, that's all! I didn't ask for any of this to happen!"</p>
-        
         <div class="choices">
-          (if: $stairsVisited is false)[|4>[[[Go explore the stairs.|Explore stairs]]]]
-            |5>[[[Go to the elevator.|Elevator]]]
-            (if: $energy is > 20)[
-            (link-reveal:'Beat the information out of him.')[
-              (set: $energy to it - 20)
-              (replace: ?statsdisplay)[(display: 'stats')]
-              (hide:?4,?5)
-              <p>Janitor, in physical pain:</p>
-              <p class="dialogue">Alright, Alright, STOP!!!</p>\
-                  <p class="dialogue">There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there.</p>
-                  <p>(The Janitor will remember that.)</p>
-              <div class="minus-energy-text">
-                <div class="label">Energy</div> 
-                <div>- 20</div> 
-                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </div>
-                  <div class="choices">
-                   [[Go to the security room.|Security room]]
-                    (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
-                    [[Go to the elevator.|Elevator]]
-                   
-                  </div>
-              </div>
-            ]
-          ]
+          (if: $energy is > 20)[(link-reveal:'<div class="with-icon">$interactionIcon Beat the information out of him. - 20$energyIcon</div>')[(goto: 'Beat the Janitor')]]
+          (if: $stairsVisited is false)[[[$arrowForward Go explore the stairs.|Explore stairs]]]
+          [[$arrowForward Go to the elevator.|Elevator]]
         </div>
       ]
     ]
     |2>[
-      (linkreveal: 'Why are you hiding in here? Are you involved in what\'s happening?')[
+      (link-reveal: '<div class="with-icon">$chatIcon Why are you hiding in here? Are you involved in what\'s happening?</div>')[
         (hide:?1,?3)
         (set: $janitorAsked to true)
         <p>Janitor, looking hurt and offended:</p> <p class="dialogue">"Why would you think that? I'm as scared as you are! I just work here."</p>
-        
         <div class="choices">
-        (if: $stairsVisited is false)[|4>[[[Go explore the stairs.|Explore stairs]]]]
-        |5>[[[Go to the elevator.|Elevator]]]
-        (if: $energy is > 20)[
-          (link-reveal:'Beat the information out of him.')[
-            (hide:?4,?5)
-            (set: $energy to it - 20)
-            (replace: ?statsdisplay)[(display: 'stats')]
-            <p>Janitor, in physical pain:</p>
-            <p class="dialogue">Alright, Alright, STOP!!!</p>
-            <p>(The Janitor will remember that.)</p>
-            <div class="minus-energy-text">
-              <div class="label">Energy</div> 
-              <div>- 20</div> 
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </div>
-            <div class="choices">
-              (link-reveal:'Stop.')[
-                <p>Janitor:</p>
-                <p class="dialogue">There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there.</p>
-                <p>(The Janitor will remember that.)</p>
-                <div class="choices">
-                  [[Go to the security room.|Security room]]
-                  (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
-                  [[Go to the elevator.|Elevator]]
-                </div>
-              ]
-            </div>
-          ]
-        ]
+          (if: $energy is > 20)[(link-reveal:'<div class="with-icon">$interactionIcon Beat the information out of him. - 20$energyIcon</div>')[(goto: 'Beat the Janitor')]]
+          (if: $stairsVisited is false)[[[$arrowForward Go explore the stairs.|Explore stairs]]]
+          [[$arrowForward Go to the elevator.|Elevator]]
         </div>
       ]
     ] 
     |3>[
-      (linkreveal: 'There must be a reason you have this keycard. Does it lead to a safe place?')[
+      (link-reveal: '<div class="with-icon">$chatIcon There must be a reason you have this keycard. Does it lead to a safe place?</div>')[
         (hide:?1,?2)
         (set: $janitorAsked to true)
         <p>Janitor, hesitatingly:</p> <p class="dialogue">"Well... yes. There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there."</p>
         
         <div class="choices">
-        (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
-        [[Go to the elevator.|Elevator]]
-        [[Go to the security room.|Security room]]
+          [[$arrowForward Go to the security room.|Security room]]
         </div>
       ]
     ]
     </div>
   }
 </div>
+
+:: Beat the Janitor {"position":"1600,375","size":"100,100"}
+<div class="centered">
+{
+  (set: $energy to it - 20)
+  (replace: ?statsdisplay)[(display: 'stats')]
+  <p>Janitor, in physical pain:</p>
+  <p class="dialogue">Alright, Alright, STOP!!!</p>
+  <p class="dialogue">There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there.</p>
+  <p>(The Janitor will remember that.)</p>
+  <div class="minus-energy-text">
+    <div class="label">Energy</div> 
+    <div>- 20</div> 
+    $energyIcon
+  </div>
+    <div class="choices">
+      [[$arrowForward Go to the security room.|Security room]]
+    </div>
+  </div>
+}
+<div>
 
 
 :: The Beginning {"position":"225,425","size":"100,100"}
@@ -568,7 +523,7 @@ Zombies at ITU
   flickering fluorescent light. The room is littered with empty 
   snack packets, energy drink cans, and board games.</p>
   <div class="choices">
-  [[Explore your surroundings|The Beginning.5]]
+  [[$arrowForward Explore your surroundings|The Beginning.5]]
   </div>
   <style>
   tw-story {
@@ -719,6 +674,8 @@ element.addEventListener('mousemove', (event) => {
 (set: $energyIcon to "
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path d='m6.054 8.38 5.756-4.513c1.638-1.284 2.457-1.926 3.018-1.863.485.055.912.366 1.136.828.26.533-.003 1.58-.53 3.673l-.44 1.753c-.211.838-.316 1.257-.244 1.62.064.32.221.611.45.83.259.249.652.361 1.438.585l.51.146c1.512.432 2.268.648 2.57 1.087.264.382.348.872.23 1.328-.137.526-.772 1.014-2.041 1.99l-5.652 4.342c-1.628 1.25-2.442 1.876-3 1.81a1.458 1.458 0 0 1-1.129-.831c-.257-.532.003-1.565.522-3.63l.394-1.568c.211-.838.316-1.257.244-1.621a1.575 1.575 0 0 0-.45-.83c-.259-.248-.652-.36-1.438-.585l-.568-.162c-1.496-.427-2.244-.64-2.546-1.077a1.631 1.631 0 0 1-.234-1.322c.132-.524.756-1.013 2.004-1.99Z' />
 </svg>")
+
+(set: $interactionIcon to "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'><path d='M12 11.5v-4m-.008 7.5h.01M8.58 3h6.84c2.127 0 3.191 0 4.004.414a3.8 3.8 0 0 1 1.66 1.66c.416.813.416 1.877.416 4.006v4.56c0 .705 0 1.058-.047 1.353a3.8 3.8 0 0 1-3.16 3.16c-.57.09-1.148 0-1.72.054a1.9 1.9 0 0 0-1.232.616c-.333.37-.61.802-.91 1.2-.823 1.1-1.236 1.651-1.742 1.848a1.9 1.9 0 0 1-1.377 0c-.506-.197-.92-.747-1.745-1.848-.298-.398-.575-.83-.91-1.2a1.9 1.9 0 0 0-1.23-.616c-.572-.053-1.15.035-1.72-.055a3.8 3.8 0 0 1-3.16-3.159c-.047-.295-.047-.648-.047-1.354V9.08c0-2.128 0-3.192.414-4.004a3.8 3.8 0 0 1 1.661-1.66C5.388 3 6.452 3 8.58 3Z' /></svg>")
 }
 
 
