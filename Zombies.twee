@@ -462,6 +462,8 @@ Zombies at ITU
             |5>[[[Go to the elevator.|Elevator]]]
             (if: $energy is > 20)[
             (link-reveal:'Beat the information out of him.')[
+              (set: $energy to it - 20)
+              (replace: ?statsdisplay)[(display: 'stats')]
               (hide:?4,?5)
               <p>Janitor, in physical pain:</p>
               <p class="dialogue">Alright, Alright, STOP!!!</p>
@@ -494,6 +496,8 @@ Zombies at ITU
         (if: $energy is > 20)[
           (link-reveal:'Beat the information out of him.')[
             (hide:?4,?5)
+            (set: $energy to it - 20)
+            (replace: ?statsdisplay)[(display: 'stats')]
             <p>Janitor, in physical pain:</p>
             <p class="dialogue">Alright, Alright, STOP!!!</p>
             <p>(The Janitor will remember that.)</p>
