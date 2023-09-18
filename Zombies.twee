@@ -198,9 +198,11 @@ element.addEventListener('mousemove', (event) => {
 
 
 :: End {"position":"2600,625","size":"100,100"}
+(replace: ?statsdisplay)[(display: 'no-header')]
 <div class="centered">
 {
-  <h3>Thank you for playing!</h3>
+<img src="https://adamgiebl.github.io/twine/images/zombie-hallway.png">
+  <h3 style="padding-top: 40px;">Thank you for playing!</h3>
   <p>That was the end of our prototype. We hope you enjoyed the 
   game and its different paths and mechanics</p>
 }
@@ -576,45 +578,7 @@ element.addEventListener('mousemove', (event) => {
   <div class="choices">
   [[$arrowForward Explore your surroundings|The Beginning.5]]
   </div>
-  <style>
-  tw-story {
-  	position: relative;
-    cursor: none;
-  --cursorX: 10px;
-  --cursorY: 10px;
-  }
-  tw-story:before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  z-index: 100;
-  top: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle 10vmax at var(--cursorX) var(--cursorY),
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,.5) 80%,
-    rgba(0,0,0,.95) 100%
-  )
-}
-  </style>
-  <script>
-  const element = document.querySelector('tw-story');
-
-element.addEventListener('mousemove', (event) => {
-    const rect = element.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    console.log(`X: ${x}, Y: ${y}`);
-    
-    element.style.setProperty('--cursorX', x + 'px')
-    element.style.setProperty('--cursorY', y + 'px')
-});
-</script>
+  
 }
 
 
@@ -768,7 +732,7 @@ element.addEventListener('mousemove', (event) => {
 body {
   margin: auto;
   max-width: 600px;
-  background: black;
+  background: #161818;
   font-size: 16px;
 }
 
@@ -789,7 +753,7 @@ tw-hook p {
 }
 
 tw-story {
-  background: #252829;
+  background: #1F2122;
   padding: 30px;
   position: relative;
   font-family: Josefin Sans;
