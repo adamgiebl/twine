@@ -42,13 +42,44 @@ Zombies at ITU
 </div>
 
 
-:: Death {"position":"2550,150","size":"100,100"}
+:: Death [death] {"position":"2550,150","size":"100,100"}
+(replace: ?statsdisplay)[(display: 'no-header')]
 <div class="centered">
 {
-  <p>As your vision fades, you wonder if your other choices would have
-  given you a different outcome...</p>
+  <p>As you desperately try to backtrack to the main floor, 
+  your steps falter, weakened by the draining energy. Just 
+  as you think you're in the clear, a chilling grasp 
+  tightens around your ankle. You glance down to see one of 
+  the creatures, its fingers locked onto you with a 
+  vice-like grip. Panic sets in, but your weakened state 
+  makes it impossible to shake free. The world blurs as the 
+  creature drags you down, and darkness soon engulfs you. </p>
+  <h3 style="margin-top: 30px;">Your journey ends here.</h3>
   <div class="choices">
-    (link: 'Retry?')[
+    (link: 'Try again')[
+      (set: $inventory to (a:))
+      (set: $energy to 80)
+      (goto: 'The Beginning')
+    ]
+  </div>
+}
+</div>
+
+:: Death2 [death] {"position":"2550,150","size":"100,100"}
+(replace: ?statsdisplay)[(display: 'no-header')]
+<div class="centered">
+{
+  <p>You decide to venture towards the stairs, hoping it could 
+  lead to safety. The echoing sound of your footsteps is the 
+  only thing accompanying you as you descend. The deeper you 
+  go, the more ominous the atmosphere becomes. As you round 
+  a corner, a horde of those creatures suddenly emerges, 
+  blocking your path. Your already exhausted state makes it 
+  impossible to fight them off or retreat in time. The world 
+  fades to black as they close in. </p>
+  <h3 style="margin-top: 30px;">Your journey ends here.</h3>
+  <div class="choices">
+    (link: 'Try again')[
       (set: $inventory to (a:))
       (set: $energy to 80)
       (goto: 'The Beginning')
@@ -118,18 +149,7 @@ Zombies at ITU
       [[Go to the elevator.|Elevator]]
       (if: $janitorAsked is false)[[[Talk to the janitor.|Talk to the janitor]]]
     </div>
-  ](else:)[<p>You decide to venture towards the stairs, hoping it could 
-    lead to safety. The echoing sound of your footsteps is the 
-    only thing accompanying you as you descend. The deeper you 
-    go, the more ominous the atmosphere becomes. As you round 
-    a corner, a horde of those creatures suddenly emerges, 
-    blocking your path. Your already exhausted state makes it 
-    impossible to fight them off or retreat in time. The world 
-    fades to black as they close in. </p>
-    <div class="choices">
-    [[Continue..|Death]]
-    </div>
-  ]
+  ](else:)[(goto: 'Death2')]
 }
 </div>
 
@@ -336,17 +356,7 @@ Zombies at ITU
       
       [[Search nearby rooms.|Search nearby rooms]]
       (if: $barricadeVisited is false)[[[Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]]
-    ](else:)[
-      <p>As you desperately try to backtrack to the main floor, 
-      your steps falter, weakened by the draining energy. Just 
-      as you think you're in the clear, a chilling grasp 
-      tightens around your ankle. You glance down to see one of 
-      the creatures, its fingers locked onto you with a 
-      vice-like grip. Panic sets in, but your weakened state 
-      makes it impossible to shake free. The world blurs as the 
-      creature drags you down, and darkness soon engulfs you. </p>
-      [[Continue..|Death]]
-    ]
+    ](else:)[(goto: 'Death')]
   ]
   </div>
 }
@@ -364,6 +374,7 @@ Zombies at ITU
   <p class="dialogue">"This... this isn't just any key! It opens doors 
   that should never be opened. I... I shouldn’t have it.”</p>
   (linkreveal: 'Take the key.')[
+    (replace: ?statsdisplay)[(display: 'stats')]
     <p>He thrusts the key card into your hands, clearly eager to 
     be rid of it. You examine it, pondering its purpose.</p>
     (set: $inventory to it + (a:'Key Card'))
@@ -447,8 +458,27 @@ Zombies at ITU
         <p>Janitor, defensive and agitated:</p> <p class="dialogue">"No! I found it, that's all! I didn't ask for any of this to happen!"</p>
         
         <div class="choices">
-          (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
-          [[Go to the elevator.|Elevator]]
+          (if: $stairsVisited is false)[|4>[[[Go explore the stairs.|Explore stairs]]]]
+            |5>[[[Go to the elevator.|Elevator]]]
+            (if: $energy is > 20)[
+            (link-reveal:'Beat the information out of him.')[
+              (hide:?4,?5)
+              <p>Janitor, in physical pain:</p>
+              <p class="dialogue">Alright, Alright, STOP!!!</p>
+              <p>(The Janitor will remember that.)</p>
+              <div class="choices">
+                (link-reveal:'Stop.')[
+                  <p>Janitor:</p>
+                  <p class="dialogue">There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there.</p>
+                  <div class="choices">
+                    (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
+                    [[Go to the elevator.|Elevator]]
+                    [[Go to the security room.|Security room]]
+                  </div>
+                ]
+              </div>
+            ]
+          ]
         </div>
       ]
     ]
@@ -459,8 +489,28 @@ Zombies at ITU
         <p>Janitor, looking hurt and offended:</p> <p class="dialogue">"Why would you think that? I'm as scared as you are! I just work here."</p>
         
         <div class="choices">
-        (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
-        [[Go to the elevator.|Elevator]]
+        (if: $stairsVisited is false)[|4>[[[Go explore the stairs.|Explore stairs]]]]
+        |5>[[[Go to the elevator.|Elevator]]]
+        (if: $energy is > 20)[
+          (link-reveal:'Beat the information out of him.')[
+            (hide:?4,?5)
+            <p>Janitor, in physical pain:</p>
+            <p class="dialogue">Alright, Alright, STOP!!!</p>
+            <p>(The Janitor will remember that.)</p>
+            <div class="choices">
+              (link-reveal:'Stop.')[
+                <p>Janitor:</p>
+                <p class="dialogue">There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there.</p>
+                <p>(The Janitor will remember that.)</p>
+                <div class="choices">
+                  (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
+                  [[Go to the elevator.|Elevator]]
+                  [[Go to the security room.|Security room]]
+                </div>
+              ]
+            </div>
+          ]
+        ]
         </div>
       ]
     ] 
@@ -522,7 +572,7 @@ Zombies at ITU
           Empty..
         ](else:)[
           (for: each _item, ...$inventory)[
-            _item (unless: $inventory's last is _item)[<span style="padding: 0 5px 0 0">,</span>]
+            _item(unless: $inventory's last is _item)[<span style="padding: 0 5px 0 0">,</span>]
           ]
         ]
       </div>
@@ -599,7 +649,7 @@ Zombies at ITU
         Empty..
       ](else:)[
         (for: each _item, ...$inventory)[
-          _item (unless: $inventory's last is _item)[<span style="padding: 0 5px 0 0">,</span>]
+          _item(unless: $inventory's last is _item)[<span style="padding: 0 5px 0 0">,</span>]
         ]
       ]
     </div>
@@ -616,6 +666,9 @@ Zombies at ITU
     </div>
   </header>
 }
+
+:: no-header {"position":"300,0","size":"100,100"}
+
 
 :: StoryStylesheet [stylesheet]
 @import url('https://fonts.googleapis.com/css?family=Josefin Sans');
@@ -657,6 +710,12 @@ tw-passage {
   height: 100%;
   transition: none !important;
   transition-property: none ;
+}
+
+tw-story[tags~="death"] {
+  background-image: url('https://adamgiebl.github.io/twine/images/blood.png');
+  background-size: cover;
+  text-align:center;
 }
 
 tw-link, .enchantment-link {
