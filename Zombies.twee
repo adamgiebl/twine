@@ -516,7 +516,7 @@ Zombies at ITU
         Empty..
       ](else:)[
         (for: each _item, ...$inventory)[
-          _item (unless: $inventory's last is _item)[, ]
+          _item (unless: $inventory's last is _item)[<span style="padding: 0 5px 0 0">,</span>]
         ]
       ]
     </div>
@@ -714,4 +714,5 @@ img {
   align-items: center;
   margin: auto;
   margin-top: -54px;
+  max-width: 425px;
 }
