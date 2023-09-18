@@ -57,8 +57,12 @@ Zombies at ITU
   <h3 style="margin-top: 30px;">Your journey ends here.</h3>
   <div class="choices">
     (link: 'Try again')[
-      (set: $inventory to (a:))
       (set: $energy to 80)
+      (set: $inventory to (a:))
+      (set: $exitVisited to false)
+      (set: $barricadeVisited to false)
+      (set: $stairsVisited to false)
+      (set: $janitorAsked to false)
       (goto: 'The Beginning')
     ]
   </div>
@@ -80,8 +84,12 @@ Zombies at ITU
   <h3 style="margin-top: 30px;">Your journey ends here.</h3>
   <div class="choices">
     (link: 'Try again')[
-      (set: $inventory to (a:))
       (set: $energy to 80)
+      (set: $inventory to (a:))
+      (set: $exitVisited to false)
+      (set: $barricadeVisited to false)
+      (set: $stairsVisited to false)
+      (set: $janitorAsked to false)
       (goto: 'The Beginning')
     ]
   </div>
