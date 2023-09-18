@@ -21,6 +21,7 @@ Zombies at ITU
   offers a brief reprieve from the chaos outside, allowing you 
   to gather your strength.</p>
   (set: $energy to it + 20)
+  (replace: ?statsdisplay)[(display: 'stats')]
   <p>Feeling slightly rejuvenated, you realize the need to 
   plan your next move. The room's security is temporary at 
   best.</p>
@@ -105,7 +106,7 @@ Zombies at ITU
     but you manage to make it back to the main floor, heart 
     pounding.</p>
     (set: $energy to it - 30)
-    
+    (replace: ?statsdisplay)[(display: 'stats')]
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 30</div> 
@@ -204,6 +205,7 @@ Zombies at ITU
     creature to the ground, but not before its nails scratch 
     your arm. The confrontation has cost you some energy.</p>
     (set: $energy to it - 20)
+    (replace: ?statsdisplay)[(display: 'stats')]
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 20</div> 
@@ -220,6 +222,7 @@ Zombies at ITU
     , but in the struggle, you get a few cuts from the broken 
     glass, draining your stamina and causing minor injuries.</p>
     (set: $energy to it - 30)
+    (replace: ?statsdisplay)[(display: 'stats')]
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 30</div> 
@@ -237,6 +240,7 @@ Zombies at ITU
     to keep the creature at bay has taken a considerable toll 
     on your strength.</p>
     (set: $energy to it - 40)
+    (replace: ?statsdisplay)[(display: 'stats')]
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 40</div> 
@@ -259,6 +263,7 @@ Zombies at ITU
     the scuffle, leaves you gasping for breath and extremely 
     fatigued.</p>
     (set: $energy to it - 60)
+    (replace: ?statsdisplay)[(display: 'stats')]
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 60</div> 
@@ -389,7 +394,7 @@ Zombies at ITU
   moment to catch your breath, regaining some much-needed 
   energy.</p> 
   (set: $energy to it + 20)
-  
+  (replace: ?statsdisplay)[(display: 'stats')]
   <div class="energy-text">
     <div class="label">Energy</div> 
     <div>+ 20</div> 
@@ -509,29 +514,31 @@ Zombies at ITU
 
 :: header [header] {"position":"100,0","size":"100,100"}
 {
-  <header>
-    <div>
-      Inventory:
-      (if: $inventory's length is 0)[\
-        Empty..
-      ](else:)[
-        (for: each _item, ...$inventory)[
-          _item (unless: $inventory's last is _item)[<span style="padding: 0 5px 0 0">,</span>]
-        ]
-      ]
-    </div>
-    (if: $energy is > 100)[(set: $energy to 100)]
-    <div class="energy-container">
-      Energy
-      <div class="energy-wrapper">
-        <div class="energy">
-          (for: each _i, ...(range: 1, $energy / 10))[
-            <div class="bar"></div>
+  |statsdisplay>[
+    <header>
+      <div>
+        Inventory:
+        (if: $inventory's length is 0)[\
+          Empty..
+        ](else:)[
+          (for: each _item, ...$inventory)[
+            _item (unless: $inventory's last is _item)[<span style="padding: 0 5px 0 0">,</span>]
           ]
+        ]
+      </div>
+      (if: $energy is > 100)[(set: $energy to 100)]
+      <div class="energy-container">
+        Energy
+        <div class="energy-wrapper">
+          <div class="energy">
+            (for: each _i, ...(range: 1, $energy / 10))[
+              <div class="bar"></div>
+            ]
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
+  ]
   <style>
     header {
     display: flex;
@@ -583,6 +590,32 @@ Zombies at ITU
   (set: $janitorAsked to false)
 }
 
+:: stats {"position":"200,0","size":"100,100"}
+{
+  <header>
+    <div>
+      Inventory:
+      (if: $inventory's length is 0)[\
+        Empty..
+      ](else:)[
+        (for: each _item, ...$inventory)[
+          _item (unless: $inventory's last is _item)[<span style="padding: 0 5px 0 0">,</span>]
+        ]
+      ]
+    </div>
+    (if: $energy is > 100)[(set: $energy to 100)]
+    <div class="energy-container">
+      Energy
+      <div class="energy-wrapper">
+        <div class="energy">
+          (for: each _i, ...(range: 1, $energy / 10))[
+            <div class="bar"></div>
+          ]
+        </div>
+      </div>
+    </div>
+  </header>
+}
 
 :: StoryStylesheet [stylesheet]
 @import url('https://fonts.googleapis.com/css?family=Josefin Sans');
