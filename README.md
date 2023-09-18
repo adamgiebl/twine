@@ -1,1 +1,1 @@
-<img src="https://adamgiebl.github.io/adamgiebl/bottle-bath.svg" width="100%"/>
+<img src="https://adamgiebl.github.io/twine/Cover.png" width="100%"/>
