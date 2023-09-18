@@ -40,7 +40,84 @@ Zombies at ITU
 </div>
 
 
-:: Death [death] {"position":"2550,150","size":"100,100"}
+:: Beat the Janitor {"position":"1600,375","size":"100,100"}
+<div class="centered">
+{
+  (set: $energy to it - 20)
+  (replace: ?statsdisplay)[(display: 'stats')]
+  <p>Janitor, in physical pain:</p>
+  <p class="dialogue">Alright, Alright, STOP!!!</p>
+  <p class="dialogue">There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there.</p>
+  <p>(The Janitor will remember that.)</p>
+  <div class="minus-energy-text">
+    <div class="label">Energy</div> 
+    <div>- 20</div> 
+    $energyIcon
+  </div>
+    <div class="choices">
+      [[$arrowForward Go to the security room.|Security room]]
+    </div>
+  </div>
+}
+<div>
+
+
+:: Dark {"position":"2375,625","size":"100,100"}
+<div class="centered">
+{
+
+  <p>
+    As the elevator doors creak open, you're immediately enveloped in an oppressive darkness. The underground level is utterly devoid of light, and the palpable silence is unsettling. A sudden spike of anxiety hits; the thought of navigating this unfamiliar terrain blind is daunting.</p>
+    <p>But then a thought strikes - your phone. Swiftly retrieving it, you activate the flashlight. A narrow beam of light slices through the inky blackness, offering a small circle of clarity in the engulfing void.</p>
+    <p>You realize it might be wiser to find a light switch and illuminate the entire area.</p>
+  <div class="choices">
+    [[Continue.|End]]
+
+  </div>
+  <style>
+  tw-story {
+  	position: relative;
+    cursor: none;
+  --cursorX: 10px;
+  --cursorY: 10px;
+  }
+  tw-story:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 100;
+  top: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 10vmax at var(--cursorX) var(--cursorY),
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,.5) 80%,
+    rgba(0,0,0,.95) 100%
+  )
+}
+  </style>
+  <script>
+  const element = document.querySelector('tw-story');
+
+element.addEventListener('mousemove', (event) => {
+    const rect = element.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    console.log(`X: ${x}, Y: ${y}`);
+    
+    element.style.setProperty('--cursorX', x + 'px')
+    element.style.setProperty('--cursorY', y + 'px')
+});
+</script>
+}
+  </div>
+
+
+:: Death [death] {"position":"2550,200","size":"100,100"}
 (replace: ?statsdisplay)[(display: 'no-header')]
 <div class="centered">
 {
@@ -53,7 +130,7 @@ Zombies at ITU
   makes it impossible to shake free. The world blurs as the 
   creature drags you down, and darkness soon engulfs you. </p>
   <h3 style="margin-top: 30px;">Your journey ends here.</h3>
-  <div class="choices" style="text-align: center;">
+  <div class="choices" style="text-align: center; justify-content: center; flex-direction: row">
     (link: 'Try again')[
       (set: $energy to 80)
       (set: $inventory to (a:))
@@ -68,7 +145,7 @@ Zombies at ITU
 </div>
 
 
-:: Death2 [death] {"position":"2550,150","size":"100,100"}
+:: Death2 [death] {"position":"2375,150","size":"100,100"}
 (replace: ?statsdisplay)[(display: 'no-header')]
 <div class="centered">
 {
@@ -81,7 +158,7 @@ Zombies at ITU
   impossible to fight them off or retreat in time. The world 
   fades to black as they close in. </p>
   <h3 style="margin-top: 30px;">Your journey ends here.</h3>
-  <div class="choices" style="text-align: center;">
+  <div class="choices" style="text-align: center; justify-content: center; flex-direction: row">
     (link: 'Try again')[
       (set: $energy to 80)
       (set: $inventory to (a:))
@@ -96,7 +173,7 @@ Zombies at ITU
 </div>
 
 
-:: Elevator {"position":"2475,825","size":"100,100"}
+:: Elevator {"position":"2175,625","size":"100,100"}
 {
   <img src="https://adamgiebl.github.io/twine/images/elevator.png">
   (if: $inventory contains 'Key Card')[<p>
@@ -115,12 +192,12 @@ Zombies at ITU
     and the doors slowly begin to open...</p>
   ]
   <div class="choices">
-    [[The End.|End]]
+    [[Continue.|Dark]]
   </div>
 }
 
 
-:: End {"position":"1775,1125","size":"100,100"}
+:: End {"position":"2600,625","size":"100,100"}
 <div class="centered">
 {
   <h3>Thank you for playing!</h3>
@@ -344,7 +421,8 @@ Zombies at ITU
       pounding in your chest, but significantly more exhausted 
       than before.</p>
       (set: $exitVisited to true)
-      
+      (set: $energy to it - 20)
+(replace: ?statsdisplay)[(display: 'stats')]
       <div class="minus-energy-text">
         <div class="label">Energy</div> 
         <div>- 20</div> 
@@ -376,15 +454,9 @@ Zombies at ITU
     <p>He thrusts the key card into your hands, clearly eager to 
     be rid of it. You examine it, pondering its purpose.</p>
     (set: $inventory to it + (a:'Key Card'))
-    <div class="choices">
-    (link-reveal: '<div class="with-icon">$arrowForward What will you do next?</div>')[
       <div class="choices">
-          [[$arrowForward Go explore the stairs.|Explore stairs]]
-          [[$arrowForward Go to the elevator.|Elevator]]
           [[$arrowForward Talk to the janitor.|Talk to the janitor]]
         </div>
-      ]
-    </div>
   ]
   </div>
 }
@@ -459,7 +531,7 @@ Zombies at ITU
         (set: $janitorAsked to true)
         <p>Janitor, defensive and agitated:</p> <p class="dialogue">"No! I found it, that's all! I didn't ask for any of this to happen!"</p>
         <div class="choices">
-          (if: $energy is > 20)[(link-reveal:'<div class="with-icon">$interactionIcon Beat the information out of him. - 20$energyIcon</div>')[(goto: 'Beat the Janitor')]]
+          (if: $energy is > 20)[(link-reveal:'<div class="with-icon">$interactionIcon Beat the information out of him. <div class="energy-option">- 20$energyIcon</div></div>')[(goto: 'Beat the Janitor')]]
           (if: $stairsVisited is false)[[[$arrowForward Go explore the stairs.|Explore stairs]]]
           [[$arrowForward Go to the elevator.|Elevator]]
         </div>
@@ -471,7 +543,7 @@ Zombies at ITU
         (set: $janitorAsked to true)
         <p>Janitor, looking hurt and offended:</p> <p class="dialogue">"Why would you think that? I'm as scared as you are! I just work here."</p>
         <div class="choices">
-          (if: $energy is > 20)[(link-reveal:'<div class="with-icon">$interactionIcon Beat the information out of him. - 20$energyIcon</div>')[(goto: 'Beat the Janitor')]]
+          (if: $energy is > 20)[(link-reveal:'<div class="with-icon">$interactionIcon Beat the information out of him. <div  class="energy-option">- 20$energyIcon</div></div>')[(goto: 'Beat the Janitor')]]
           (if: $stairsVisited is false)[[[$arrowForward Go explore the stairs.|Explore stairs]]]
           [[$arrowForward Go to the elevator.|Elevator]]
         </div>
@@ -491,27 +563,6 @@ Zombies at ITU
     </div>
   }
 </div>
-
-:: Beat the Janitor {"position":"1600,375","size":"100,100"}
-<div class="centered">
-{
-  (set: $energy to it - 20)
-  (replace: ?statsdisplay)[(display: 'stats')]
-  <p>Janitor, in physical pain:</p>
-  <p class="dialogue">Alright, Alright, STOP!!!</p>
-  <p class="dialogue">There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there.</p>
-  <p>(The Janitor will remember that.)</p>
-  <div class="minus-energy-text">
-    <div class="label">Energy</div> 
-    <div>- 20</div> 
-    $energyIcon
-  </div>
-    <div class="choices">
-      [[$arrowForward Go to the security room.|Security room]]
-    </div>
-  </div>
-}
-<div>
 
 
 :: The Beginning {"position":"225,425","size":"100,100"}
@@ -570,7 +621,7 @@ element.addEventListener('mousemove', (event) => {
 :: The Beginning.5 {"position":"225,575","size":"100,100"}
 <div class="centered">
 {
-  <p>You feel disoriented</p>
+  <p>You don't remember much of what has happened the day before.</p>
   <div class="choices">
   (link-reveal: '<div class="with-icon">$searchIcon Look at the clock.</div>')[<p>You glance up at the wall clock. It’s 4:37 AM, Saturday. A memory tugs at you – the LAN party, the thrill of the games, 
     the chatter of your friends. But why is it so silent now?</p>
@@ -583,7 +634,7 @@ element.addEventListener('mousemove', (event) => {
 </div>
 
 
-:: header [header] {"position":"100,0","size":"100,100"}
+:: header [header] {"position":"125,25","size":"100,100"}
 {
   |statsdisplay>[
     <header>
@@ -651,7 +702,7 @@ element.addEventListener('mousemove', (event) => {
 }
 
 
-:: init [startup] {"position":"0,0","size":"100,100"}
+:: init [startup] {"position":"25,25","size":"100,100"}
 {
   (set: $energy to 80)
   (set: $inventory to (a:))
@@ -679,11 +730,11 @@ element.addEventListener('mousemove', (event) => {
 }
 
 
-:: no-header {"position":"300,0","size":"100,100"}
+:: no-header {"position":"375,0","size":"100,100"}
 
 
 
-:: stats {"position":"200,0","size":"100,100"}
+:: stats {"position":"250,25","size":"100,100"}
 {
   <header>
     <div>
@@ -764,7 +815,15 @@ tw-link, .enchantment-link {
 	color: #4db6e3;
 }
 
-tw-link:hover, .enchantment-link:hover {
+tw-link:visited, .enchantment-link:visited, tw-link:active, .enchantment-link:active {
+	color: #4db6e3;
+}
+
+.visited, .visited:hover {
+  color: #4db6e3 !important;
+}
+
+tw-link:hover, .enchantment-link:hover, tw-link:visited:hover, .enchantment-link:visited:hover {
 	color: #00BFFF;
 }
 
@@ -803,6 +862,14 @@ img {
   display: block;
   width: 20px;
   height: 20px;
+}
+
+.energy-option {
+color:#EE5635;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
 }
 
 .minus-energy-text {
