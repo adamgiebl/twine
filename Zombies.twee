@@ -529,9 +529,9 @@ Zombies at ITU
                 <p class="dialogue">There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there.</p>
                 <p>(The Janitor will remember that.)</p>
                 <div class="choices">
+                  [[Go to the security room.|Security room]]
                   (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
                   [[Go to the elevator.|Elevator]]
-                  [[Go to the security room.|Security room]]
                 </div>
               ]
             </div>
@@ -548,8 +548,8 @@ Zombies at ITU
         
         <div class="choices">
         (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
-        [[Go to the elevator.|Elevator]]
         [[Go to the security room.|Security room]]
+        [[Go to the elevator.|Elevator]]
         </div>
       ]
     ]
