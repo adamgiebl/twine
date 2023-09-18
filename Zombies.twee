@@ -13,6 +13,7 @@ Zombies at ITU
 
 
 :: Barricade yourself and rest {"position":"825,525","size":"100,100"}
+<div class="centered">
 {
   <p>Choosing safety, you quickly barricade the game room door 
   with nearby furniture. Settling into a corner, you take deep, 
@@ -24,7 +25,7 @@ Zombies at ITU
   plan your next move. The room's security is temporary at 
   best.</p>
   (set: $barricadeVisited to true)
-  <br>
+  
   <div class="energy-text">
     <div class="label">Energy</div> 
     <div>+ 20</div> 
@@ -32,23 +33,28 @@ Zombies at ITU
       <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>
   </div>
-  <br>
-  (if: $exitVisited is false)[- [[Head to the exit.|Head to the exit]]<br>]
-  - [[Search nearby rooms.|Search nearby rooms]]<br>
+  <div class="choices">
+    (if: $exitVisited is false)[[[Head to the exit.|Head to the exit]]]
+    [[Search nearby rooms.|Search nearby rooms]]
+  </div>
 }
+</div>
 
 
 :: Death {"position":"2550,150","size":"100,100"}
+<div class="centered">
 {
   <p>As your vision fades, you wonder if your other choices would have
   given you a different outcome...</p>
-  <br>
-  - (link: 'Retry?')[
-    (set: $inventory to (a:))
-    (set: $energy to 80)
-    (goto: 'The Beginning')
-  ]<br>
+  <div class="choices">
+    (link: 'Retry?')[
+      (set: $inventory to (a:))
+      (set: $energy to 80)
+      (goto: 'The Beginning')
+    ]
+  </div>
 }
+</div>
 
 
 :: Elevator {"position":"2475,825","size":"100,100"}
@@ -69,20 +75,24 @@ Zombies at ITU
     lies ahead. The elevator's soft chime signals its arrival, 
     and the doors slowly begin to open...</p>
   ]
-  <br>
-  - [[The End.|End]]<br>
+  <div class="choices">
+    [[The End.|End]]
+  </div>
 }
 
 
 :: End {"position":"1775,1125","size":"100,100"}
+<div class="centered">
 {
   <h3>Thank you for playing!</h3>
   <p>That was the end of our prototype. We hope you enjoyed the 
   game and its different paths and mechanics</p>
 }
+</div>
 
 
 :: Explore stairs {"position":"1375,775","size":"100,100"}
+<div class="centered">
 {
   (set: $stairsVisited to true)
   (if: $energy is >= 50)[<p>With a sense of purpose, you head towards the stairs. 
@@ -95,7 +105,7 @@ Zombies at ITU
     but you manage to make it back to the main floor, heart 
     pounding.</p>
     (set: $energy to it - 30)
-    <br>
+    
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
       <div>- 30</div> 
@@ -103,9 +113,10 @@ Zombies at ITU
         <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
     </div>
-    <br>
-    - [[Go to the elevator.|Elevator]]<br>
-    (if: $janitorAsked is false)[- [[Talk to the janitor.|Talk to the janitor]]]
+    <div class="choices">
+      [[Go to the elevator.|Elevator]]
+      (if: $janitorAsked is false)[[[Talk to the janitor.|Talk to the janitor]]]
+    </div>
   ](else:)[<p>You decide to venture towards the stairs, hoping it could 
     lead to safety. The echoing sound of your footsteps is the 
     only thing accompanying you as you descend. The deeper you 
@@ -114,9 +125,12 @@ Zombies at ITU
     blocking your path. Your already exhausted state makes it 
     impossible to fight them off or retreat in time. The world 
     fades to black as they close in. </p>
-    [[Continue..|Death]]<br>
+    <div class="choices">
+    [[Continue..|Death]]
+    </div>
   ]
 }
+</div>
 
 
 :: GameLab - Door {"position":"375,775","size":"100,100"}
@@ -127,48 +141,56 @@ Zombies at ITU
   an unsettling sound seeps in, echoing through the silence—a 
   slow, labored breathing, punctuated by occasional gurgles 
   and moans.</p>
-  <br>
-  You're faced with a choice:<br>
-  - [[Open the door and step out.|Hallway]]<br>
-  - [[Go back, close the door, and look around for something to defend yourself with.|GameLab2]]<br>
+  
+  You're faced with a choice:
+  <div class="choices">
+  [[Open the door and step out.|Hallway]]
+  [[Go back, close the door, and look around for something to defend yourself with.|GameLab2]]
+  </div>
 }
 </div>
 
 
 :: GameLab2 {"position":"450,300","size":"100,100"}
+<div class="centered">
 {
   <p>Not willing to face the unknown just yet, you retreat and 
   silently push the door shut. You realize you need something, 
   anything, to defend yourself. You scan the room: There's a 
   metal bar from a dismantled PC stand, a thick glass bottle 
   from one of the energy drinks, and a long ethernet cable. 
-  Each could be a potential weapon or tool.</p><br>
-  Which do you choose?<br>
-  1. (link: 'Grab the metal bar.')[
-    (set: $inventory to it + (a:'Metal Bar'))
-    (goto: 'Hallway')
-    ]<br>
-  2. (link: 'Take the glass bottle.')[
-    (set: $inventory to it + (a:'Glass Bottle'))
-    (goto: 'Hallway')
-    ]<br>
-  3. (link: 'Take the ethernet cable.')[
-    (set: $inventory to it + (a:'Ethernet Cable'))
-    (goto: 'Hallway')
-    ]<br>
+  Each could be a potential weapon or tool.</p>
+  Which do you choose?
+  <div class="choices">
+    (link: 'Grab the metal bar.')[
+      (set: $inventory to it + (a:'Metal Bar'))
+      (goto: 'Hallway')
+      ]
+    (link: 'Take the glass bottle.')[
+      (set: $inventory to it + (a:'Glass Bottle'))
+      (goto: 'Hallway')
+      ]
+    (link: 'Take the ethernet cable.')[
+      (set: $inventory to it + (a:'Ethernet Cable'))
+      (goto: 'Hallway')
+      ]
+    </div>
 }
-
+</div>
 
 :: Hallway {"position":"525,1025","size":"100,100"}
+<div class="centered">
 {
   <p>Gathering your courage, you decide that hiding won’t do 
   any good. You need answers, and perhaps whoever or whatever 
   is in the hallway holds the key to understanding this 
   surreal nightmare. Carefully, you turn the handle, hoping 
   not to make a sound, and step into the dim corridor. </p>
-  [[Continue..|Hallway2]]
+  <div class="choices">
+    [[Continue..|Hallway2]]
+  </div>
 }
-
+</div>
 
 :: Hallway2 {"position":"875,1025","size":"100,100"}
 {
@@ -181,7 +203,6 @@ Zombies at ITU
     The bar connects with a sickening thud, knocking the 
     creature to the ground, but not before its nails scratch 
     your arm. The confrontation has cost you some energy.</p>
-    [[Continue..|Hallway3]]
     (set: $energy to it - 20)
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
@@ -198,7 +219,6 @@ Zombies at ITU
     into a jagged weapon, and stab the creature. It goes down
     , but in the struggle, you get a few cuts from the broken 
     glass, draining your stamina and causing minor injuries.</p>
-    [[Continue..|Hallway3]]
     (set: $energy to it - 30)
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
@@ -216,7 +236,6 @@ Zombies at ITU
     goes limp. The prolonged fight and the sheer force needed 
     to keep the creature at bay has taken a considerable toll 
     on your strength.</p>
-    [[Continue..|Hallway3]]
     (set: $energy to it - 40)
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
@@ -239,7 +258,6 @@ Zombies at ITU
     exertion, combined with minor injuries sustained during 
     the scuffle, leaves you gasping for breath and extremely 
     fatigued.</p>
-    [[Continue..|Hallway3]]
     (set: $energy to it - 60)
     <div class="minus-energy-text">
       <div class="label">Energy</div> 
@@ -249,18 +267,22 @@ Zombies at ITU
       </svg>
     </div>
   ]
+  <div class="choices">
+  [[Continue..|Hallway3]]
+  </div>
 }
 
 
 :: Hallway3 {"position":"700,775","size":"100,100"}
+<div class="centered">
 {
   <p>Still shaken from the terrifying encounter, the reality of 
   the situation weighs heavily on you. The quiet of the 
   university feels suffocating. Your breath is short, and every 
   sound feels magnified. Your initial shock begins to fade as 
   survival instincts kick in.</p>
-  <br>
-  What will you do next?<br>
+  
+  What will you do next?
   <div class="choices" style="margin-bottom: 30px;">
   [[Head to the exit.|Head to the exit]]
   [[Search nearby rooms.|Search nearby rooms]]
@@ -268,9 +290,11 @@ Zombies at ITU
   </div>
   (Choose wisely. Your decisions shape the path ahead.)
 }
+</div>
 
 
 :: Head to the exit {"position":"750,175","size":"100,100"}
+<div class="centered">
 {
   <p>As you make your way towards the exit, a sinking feeling 
   takes hold. The revolving door ahead is barricaded from the 
@@ -282,8 +306,9 @@ Zombies at ITU
   some of the bodies begin to stir. Limbs contort, and the 
   muffled groans of the reanimating dead fill the air. It's 
   clear: escaping won't be as straightforward as you hoped.</p>
-  <br>
-  - (linkreveal: 'Go back to the main floor.')[
+
+  <div class="choices">
+  (linkreveal: 'Go back to the main floor.')[
     (if: $energy is >= 50)[
       <p>Using the remnants of your strength, you turn on your 
       heels and dash back towards the main floor. Behind you, 
@@ -295,7 +320,7 @@ Zombies at ITU
       pounding in your chest, but significantly more exhausted 
       than before.</p>
       (set: $exitVisited to true)
-      <br>
+      
       <div class="minus-energy-text">
         <div class="label">Energy</div> 
         <div>- 20</div> 
@@ -303,9 +328,9 @@ Zombies at ITU
           <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </div>
-      <br>
-      - [[Search nearby rooms.|Search nearby rooms]]<br>
-      (if: $barricadeVisited is false)[- [[Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]<br>]
+      
+      [[Search nearby rooms.|Search nearby rooms]]
+      (if: $barricadeVisited is false)[[[Barricade yourself in the game room and rest for a while.|Barricade yourself and rest]]]
     ](else:)[
       <p>As you desperately try to backtrack to the main floor, 
       your steps falter, weakened by the draining energy. Just 
@@ -317,8 +342,10 @@ Zombies at ITU
       creature drags you down, and darkness soon engulfs you. </p>
       [[Continue..|Death]]
     ]
-  ]<br>
+  ]
+  </div>
 }
+</div>
 
 
 :: Search nearby rooms {"position":"1125,600","size":"100,100"}
@@ -331,19 +358,19 @@ Zombies at ITU
   <p>Janitor:</p>
   <p class="dialogue">"This... this isn't just any key! It opens doors 
   that should never be opened. I... I shouldn’t have it.”</p>
-  - (linkreveal: 'Take the key.')[
-    <p>He thrusts the key card into your hands,clearly eager to 
+  (linkreveal: 'Take the key.')[
+    <p>He thrusts the key card into your hands, clearly eager to 
     be rid of it. You examine it, pondering its purpose.</p>
     (set: $inventory to it + (a:'Key Card'))
     (linkreveal: 'What will you do next?')[
-      <br>
-      - [[Go explore the stairs.|Explore stairs]]<br>
-      - [[Go to the elevator.|Elevator]]<br>
-      - [[Talk to the janitor.|Talk to the janitor]]<br>
+    <div class="choices">
+        [[Go explore the stairs.|Explore stairs]]
+        [[Go to the elevator.|Elevator]]
+        [[Talk to the janitor.|Talk to the janitor]]
+      </div>
     ]
   ]
 }
-
 
 :: Security room {"position":"1250,200","size":"100,100"}
 {
@@ -362,7 +389,7 @@ Zombies at ITU
   moment to catch your breath, regaining some much-needed 
   energy.</p> 
   (set: $energy to it + 20)
-  <br>
+  
   <div class="energy-text">
     <div class="label">Energy</div> 
     <div>+ 20</div> 
@@ -370,68 +397,84 @@ Zombies at ITU
       <path d="M11.9679 16.5662L23.3468 7.64463C26.5849 5.10633 28.2039 3.83718 29.313 3.96173C30.2717 4.07045 31.1159 4.68526 31.5587 5.59857C32.0727 6.65224 31.5527 8.72202 30.5109 12.8596L29.6411 16.3251C29.224 17.9817 29.0164 18.81 29.1588 19.5276C29.2853 20.1602 29.5956 20.7354 30.0483 21.1684C30.5604 21.6606 31.3373 21.882 32.8911 22.3248L33.8993 22.6135C36.8883 23.4675 38.3828 23.8945 38.9798 24.7623C39.5017 25.5175 39.6678 26.4861 39.4345 27.3876C39.1637 28.4274 37.9084 29.3921 35.3997 31.3216L24.2265 39.9051C21.0081 42.3762 19.399 43.6137 18.2959 43.4832C17.8158 43.419 17.3596 43.2348 16.9695 42.9477C16.5795 42.6606 16.268 42.2798 16.064 41.8405C15.5559 40.7888 16.0699 38.7467 17.0959 34.6644L17.8748 31.5647C18.2919 29.9081 18.4995 29.0798 18.3572 28.3602C18.2354 27.7352 17.9249 27.1625 17.4676 26.7194C16.9556 26.2292 16.1787 26.0077 14.6248 25.5629L13.502 25.2427C10.5446 24.3986 9.06589 23.9775 8.46887 23.1136C8.21073 22.7358 8.03597 22.3073 7.95621 21.8567C7.87645 21.4061 7.89352 20.9437 8.00629 20.5002C8.26723 19.4643 9.5008 18.4976 11.9679 16.5662Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>
   </div>
-  <br>
-  - [[Continue exploring the room.|Security room2]]<br>
+  <div class="choices">
+    [[Continue exploring the room.|Security room2]]
+  </div>
 }
 
 
 :: Security room2 {"position":"1675,150","size":"100,100"}
-{
-  <p>As you scan the security room, your attention is caught 
-  by an open logbook on the desk. Flipping through the pages, 
-  most of the entries are mundane - reports of lost student IDs, 
-  minor altercations, and the like. However, a particular entry 
-  from a week ago stands out:</p>
-  <p class="dialogue">"Received a call from Dr. Sorensen about an alarm tripped 
-  in the basement level. Wasn’t aware we had a basement level. 
-  Checked with management and they were evasive. Need to look 
-  into this further."</p>
-  <p>Beside it, a sticky note reads: "NOTE: Elevator access 
-  restricted to the -1 floor. Keycard required."</p>
-  <p>Could this be the mysterious floor the janitor hinted at? 
-  An unknown basement level, and now an outbreak? The pieces 
-  seem to connect in a disconcerting way.</p>
-  <p>The urgency to uncover what's really happening intensifies.</p>
-  <br>
-  - [[Go to the elevator.|Elevator]]<br>
-}
+<div class="centered">
+  {
+    <p>As you scan the security room, your attention is caught 
+    by an open logbook on the desk. Flipping through the pages, 
+    most of the entries are mundane - reports of lost student IDs, 
+    minor altercations, and the like. However, a particular entry 
+    from a week ago stands out:</p>
+    <p class="dialogue">"Received a call from Dr. Sorensen about an alarm tripped 
+    in the basement level. Wasn’t aware we had a basement level. 
+    Checked with management and they were evasive. Need to look 
+    into this further."</p>
+    (link-reveal: 'Continue..')[
+      <p>Beside it, a sticky note reads: "NOTE: Elevator access 
+      restricted to the -1 floor. Keycard required."</p>
+      <p>Could this be the mysterious floor the janitor hinted at? 
+      An unknown basement level, and now an outbreak? The pieces 
+      seem to connect in a disconcerting way.</p>
+      <p>The urgency to uncover what's really happening intensifies.</p>
+      <div class="choices">
+        [[Go to the elevator.|Elevator]]
+      </div>
+    ]
+  }
+</div>
 
 
 :: Talk to the janitor {"position":"1500,375","size":"100,100"}
-{
-  <p>You decide to press the janitor for more information, 
-  hoping he might have valuable insights.</p>
-  |1>[- (linkreveal: 'Did you cause all of this with this keycard?')[
-      (hide:?2,?3)
-      (set: $janitorAsked to true)
-      <p>Janitor, defensive and agitated:</p> <p class="dialogue">"No! I found it, that's all! I didn't ask for any of this to happen!"</p>
-      <br>
-      (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
-      - [[Go to the elevator.|Elevator]]<br>
-    ]<br>
-  ]
-  |2>[
-    - (linkreveal: 'Why are you hiding in here? Are you involved in what\'s happening?')[
-      (hide:?1,?3)
-      (set: $janitorAsked to true)
-      <p>Janitor, looking hurt and offended:</p> <p class="dialogue">"Why would you think that? I'm as scared as you are! I just work here."</p>
-      <br>
-      (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
-      - [[Go to the elevator.|Elevator]]<br>
-    ]<br>
-  ] 
-  |3>[
-    - (linkreveal: 'There must be a reason you have this keycard. Does it lead to a safe place?')[
-      (hide:?1,?2)
-      (set: $janitorAsked to true)
-      <p>Janitor, hesitatingly:</p> <p class="dialogue">"Well... yes. There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there."</p>
-      <br>
-      (if: $stairsVisited is false)[- [[Go explore the stairs.|Explore stairs]]<br>]
-      - [[Go to the elevator.|Elevator]]<br>
-      - [[Go to the security room.|Security room]]<br>
-    ]<br>
-  ]
-}
+<div class="centered">
+  {
+    <p>You decide to press the janitor for more information, 
+    hoping he might have valuable insights.</p>
+    <div class="choices">
+    |1>[(linkreveal: 'Did you cause all of this with this keycard?')[
+        (hide:?2,?3)
+        (set: $janitorAsked to true)
+        <p>Janitor, defensive and agitated:</p> <p class="dialogue">"No! I found it, that's all! I didn't ask for any of this to happen!"</p>
+        
+        <div class="choices">
+          (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
+          [[Go to the elevator.|Elevator]]
+        </div>
+      ]
+    ]
+    |2>[
+      (linkreveal: 'Why are you hiding in here? Are you involved in what\'s happening?')[
+        (hide:?1,?3)
+        (set: $janitorAsked to true)
+        <p>Janitor, looking hurt and offended:</p> <p class="dialogue">"Why would you think that? I'm as scared as you are! I just work here."</p>
+        
+        <div class="choices">
+        (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
+        [[Go to the elevator.|Elevator]]
+        </div>
+      ]
+    ] 
+    |3>[
+      (linkreveal: 'There must be a reason you have this keycard. Does it lead to a safe place?')[
+        (hide:?1,?2)
+        (set: $janitorAsked to true)
+        <p>Janitor, hesitatingly:</p> <p class="dialogue">"Well... yes. There's a security room. It's hidden, but that keycard can access it. Not many know about it. There's more than meets the eye there."</p>
+        
+        <div class="choices">
+        (if: $stairsVisited is false)[[[Go explore the stairs.|Explore stairs]]]
+        [[Go to the elevator.|Elevator]]
+        [[Go to the security room.|Security room]]
+        </div>
+      ]
+    ]
+    </div>
+  }
+</div>
 
 
 :: The Beginning {"position":"225,425","size":"100,100"}
@@ -442,14 +485,14 @@ Zombies at ITU
   of high-end PCs, the hum of the computers and the occasional 
   flickering fluorescent light. The room is littered with empty 
   snack packets, energy drink cans, and board games.</p>
-  
   <div class="choices">
-  [[Explore your surroundings|The Beginning.5]]<br>
+  [[Explore your surroundings|The Beginning.5]]
   </div>
 }
 
 
 :: The Beginning.5 {"position":"225,575","size":"100,100"}
+<div class="centered">
 {
   <p>You feel disoriented</p>
   <div class="choices">
@@ -458,9 +501,10 @@ Zombies at ITU
   ]
   (link-reveal: 'Check the smartphone.')[<p>You reach for your smartphone, its screen flashing with a barrage of missed calls and unread messages. Most are from friends and family, their tone growing increasingly frantic, "Are you okay?", "Stay where you are!", "Avoid people!". You have no reception and battery at 20%.</p>
   ]
-  [[Investigate the GameLab door.|GameLab - Door]]<br>
+  [[Investigate the GameLab door.|GameLab - Door]]
   </div>
 }
+</div>
 
 
 :: header [header] {"position":"100,0","size":"100,100"}
@@ -472,7 +516,7 @@ Zombies at ITU
         Empty..
       ](else:)[
         (for: each _item, ...$inventory)[
-          _item (unless: $inventory's last is _item)[,]
+          _item (unless: $inventory's last is _item)[, ]
         ]
       ]
     </div>
@@ -550,6 +594,10 @@ body {
   font-size: 16px;
 }
 
+tw-transition-container {
+	height: 100%;
+}
+
 p {
   margin: 10px 0px;
 }
@@ -574,6 +622,8 @@ tw-story {
 
 tw-passage {
   height: 100%;
+  transition: none !important;
+  transition-property: none ;
 }
 
 tw-link, .enchantment-link {
@@ -652,17 +702,16 @@ img {
 }
 
 .choices {
-  	margin-top: 30px;
+  margin-top: 30px;
 	display: flex;
-  	flex-direction: column;
+  flex-direction: column;
 	gap: 15px;
 }
 
 .centered {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    max-width: 360px;
-    margin: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: auto;
   margin-top: -54px;
 }
